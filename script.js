@@ -1,54 +1,48 @@
 document.addEventListener('DOMContentLoaded', function () {
     const navbar = document.querySelector('.navbar');
-    // Fallback for other pages or if button is missing
     const hero = document.querySelector('.hero') || document.querySelector('.page-header');
 
     let lastScrollY = window.scrollY;
-    // Default trigger slightly deeper if no elements found to prevent immediate flicker
-    let triggerPoint = 300;
-
-    function updateTriggerPoint() {
-        if (hero) {
-            // Trigger after passing the entire hero/header section
-            // This aligns with "Our Services" or the next content section
-            triggerPoint = hero.offsetTop + hero.offsetHeight;
-        }
-    }
-
-    // Calculate initial trigger point
-    updateTriggerPoint();
-    // Re-calculate on resize
-    window.addEventListener('resize', updateTriggerPoint);
+    let ticking = false;
 
     window.addEventListener('scroll', function () {
-        const currentScrollY = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                const currentScrollY = window.scrollY;
+                const scrollThreshold = 50;
 
-        // Logic:
-        // 1. Above Trigger Point: Navbar determines its own fate (Absolute position). 
-        //    It scrolls naturally with the page. We ensure '.scrolled' is removed so it's not fixed.
-        // 2. Below Trigger Point:
-        //    - Scrolling UP: Show navbar (Fixed, Dark Background -> add 'scrolled').
-        //    - Scrolling DOWN: Hide navbar (Remove 'scrolled' -> reverts to Absolute/Hidden).
+                if (currentScrollY < scrollThreshold) {
+                    navbar.classList.remove('scrolled', 'scrolled-visible');
+                } else {
+                    navbar.classList.add('scrolled');
 
-        // Activation threshold: after scrolling past the first 50px (height of top-bar + small buffer).
-        const scrollThreshold = 50;
+                    // Direction detection with 5px buffer to prevent jitter on mobile devices
+                    const scrollDelta = lastScrollY - currentScrollY;
 
-        if (currentScrollY < scrollThreshold) {
-            navbar.classList.remove('scrolled', 'scrolled-visible');
-        } else {
-            // We are past original position, navbar becomes fixed (scrolled).
-            navbar.classList.add('scrolled');
+                    if (scrollDelta > 5) {
+                        // Scrolling UP - Show fixed navbar
+                        navbar.classList.add('scrolled-visible');
+                    } else if (scrollDelta < -5) {
+                        // Scrolling DOWN - Hide fixed navbar
+                        navbar.classList.remove('scrolled-visible');
+                    }
+                }
 
-            // Check scroll direction for visibility
-            if (currentScrollY < lastScrollY) {
-                // Scrolling UP - Show fixed navbar
-                navbar.classList.add('scrolled-visible');
-            } else {
-                // Scrolling DOWN - Hide fixed navbar
-                navbar.classList.remove('scrolled-visible');
-            }
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
         }
-
-        lastScrollY = currentScrollY;
     });
+
+    // Handle scroll-reveal animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 });
