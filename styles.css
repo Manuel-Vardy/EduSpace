@@ -396,21 +396,25 @@ body {
 }
 
 /* Animation triggers when .visible is added by IntersectionObserver */
-.scroll-reveal.visible .animate-fade-down {
+.scroll-reveal.visible .animate-fade-down,
+.scroll-reveal.visible.animate-fade-down {
     animation: fadeInDown 1.5s ease forwards;
     display: inline-block;
 }
 
-.scroll-reveal.visible .animate-fade-up {
+.scroll-reveal.visible .animate-fade-up,
+.scroll-reveal.visible.animate-fade-up {
     animation: fadeInUp 1.5s ease forwards;
     display: inline-block;
 }
 
-.scroll-reveal.visible .animate-fade-left {
+.scroll-reveal.visible .animate-fade-left,
+.scroll-reveal.visible.animate-fade-left {
     animation: fadeInLeft 1.5s ease forwards;
 }
 
-.scroll-reveal.visible .animate-fade-left-buttons {
+.scroll-reveal.visible .animate-fade-left-buttons,
+.scroll-reveal.visible.animate-fade-left-buttons {
     animation: fadeInLeft 1.5s ease forwards;
 }
 
@@ -513,15 +517,18 @@ body {
 }
 
 /* Animation triggers when .visible is added */
-.scroll-reveal.visible .animate-from-right {
+.scroll-reveal.visible .animate-from-right,
+.scroll-reveal.visible.animate-from-right {
     animation: slideInFromRight 0.8s ease forwards;
 }
 
-.scroll-reveal.visible .animate-from-top {
+.scroll-reveal.visible .animate-from-top,
+.scroll-reveal.visible.animate-from-top {
     animation: slideInFromTop 0.8s ease forwards;
 }
 
-.auto-hover-pulse {
+/* Ensure pulse animations only start when visible */
+.scroll-reveal.visible .auto-hover-pulse {
     animation: auto-pulse 15s infinite;
 }
 
@@ -849,6 +856,11 @@ footer a:hover {
         margin-top: 10px;
     }
 
+    section {
+        padding: 40px 0 !important;
+        /* Balanced spacing for mobile sections */
+    }
+
     .hero-main-title {
         font-size: 2.5rem;
         /* Tuned: Scaled down from 4rem */
@@ -903,10 +915,15 @@ footer a:hover {
     }
 
     /* Solutions Section Mobile Overrides */
+    .solutions-split {
+        padding: 60px 0;
+    }
+
     .solutions-grid-container {
         display: flex;
         flex-direction: column;
-        gap: 50px;
+        gap: 30px;
+        /* Reduced from 50px */
     }
 
     .solutions-left {
@@ -921,13 +938,13 @@ footer a:hover {
         width: 100%;
         order: 1;
         /* Move content up */
-        text-align: center;
+        text-align: left;
     }
 
     .solutions-right .section-title,
     .solutions-right .lead {
-        text-align: center;
-        margin-left: auto;
+        text-align: left;
+        margin-left: 0;
         margin-right: auto;
     }
 
@@ -948,18 +965,21 @@ footer a:hover {
 
     .solution-item {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         gap: 15px;
         border: 1px solid transparent;
         background: #fff;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        padding: 30px 20px;
+        padding: 20px 15px;
+        /* Reduced from 30px 20px */
+        margin-bottom: 20px;
+        /* Reduced from 40px */
         border-radius: 12px;
         transition: border-color 0.3s ease;
     }
 
-    .mobile-border-pulse {
+    .visible .mobile-border-pulse {
         animation: border-slow-fill 15s infinite;
     }
 
@@ -968,7 +988,7 @@ footer a:hover {
     }
 
     .item-content {
-        text-align: center;
+        text-align: left;
     }
 
     .exp-badge {
@@ -978,6 +998,25 @@ footer a:hover {
 
     .exp-badge h3 {
         font-size: 1.5rem;
+    }
+
+    /* Goal & Vision Mobile Overrides */
+    .gv-content-col {
+        padding: 40px 8%;
+        /* Reduced from 80px */
+    }
+
+    .gv-image-col {
+        min-height: 350px;
+        /* Reduced from 600px */
+    }
+
+    .gv-item {
+        margin-bottom: 15px;
+    }
+
+    .gv-divider {
+        margin: 15px 0;
     }
 }
 
