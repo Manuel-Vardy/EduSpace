@@ -76,9 +76,14 @@ body {
     margin-top: 0 !important;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: none;
     transform: translateY(-100%);
-    transition: transform 0.4s ease-out, background 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), background 0.3s ease;
+    /* Hardware acceleration to prevent "missing" frames on hosted mobile sites */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
 }
 
 .navbar.scrolled-visible {
