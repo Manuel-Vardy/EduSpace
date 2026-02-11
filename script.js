@@ -30,20 +30,22 @@ document.addEventListener('DOMContentLoaded', function () {
         //    - Scrolling UP: Show navbar (Fixed, Dark Background -> add 'scrolled').
         //    - Scrolling DOWN: Hide navbar (Remove 'scrolled' -> reverts to Absolute/Hidden).
 
-        // Activation threshold: after scrolling past the first 100px.
-        // This ensures the top-bar and initial navbar position have moved up.
-        const scrollThreshold = 100;
+        // Activation threshold: after scrolling past the first 50px (height of top-bar + small buffer).
+        const scrollThreshold = 50;
 
         if (currentScrollY < scrollThreshold) {
-            navbar.classList.remove('scrolled');
+            navbar.classList.remove('scrolled', 'scrolled-visible');
         } else {
-            // Check scroll direction
+            // We are past original position, navbar becomes fixed (scrolled).
+            navbar.classList.add('scrolled');
+
+            // Check scroll direction for visibility
             if (currentScrollY < lastScrollY) {
-                // Scrolling UP - Always show fixed navbar
-                navbar.classList.add('scrolled');
+                // Scrolling UP - Show fixed navbar
+                navbar.classList.add('scrolled-visible');
             } else {
-                // Scrolling DOWN - Hide fixed navbar to focus on content
-                navbar.classList.remove('scrolled');
+                // Scrolling DOWN - Hide fixed navbar
+                navbar.classList.remove('scrolled-visible');
             }
         }
 
