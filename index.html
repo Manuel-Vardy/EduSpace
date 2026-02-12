@@ -484,7 +484,7 @@
         <div class="container">
             <div class="trust-flow-container scroll-reveal">
                 <!-- Segment 1: Tailored Solutions -->
-                <div class="trust-segment">
+                <div class="trust-segment trust-animate-left" style="animation-delay: 0.2s;">
                     <div class="trust-icon-circle">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -497,7 +497,7 @@
                 </div>
 
                 <!-- Segment 2: Excellence Driven -->
-                <div class="trust-segment">
+                <div class="trust-segment trust-animate-left" style="animation-delay: 0.4s;">
                     <div class="trust-icon-circle">
                         <i class="fas fa-bullseye"></i>
                     </div>
@@ -510,7 +510,7 @@
                 </div>
 
                 <!-- Segment 3: Modern Strategy -->
-                <div class="trust-segment">
+                <div class="trust-segment trust-animate-right" style="animation-delay: 0.6s;">
                     <div class="trust-icon-circle">
                         <i class="fas fa-rocket"></i>
                     </div>
@@ -523,7 +523,7 @@
                 </div>
 
                 <!-- Segment 4: Collaborative Innovation -->
-                <div class="trust-segment">
+                <div class="trust-segment trust-animate-right" style="animation-delay: 0.8s;">
                     <div class="trust-icon-circle">
                         <i class="fas fa-handshake"></i>
                     </div>
@@ -598,7 +598,7 @@
                         entry.target.classList.add('visible');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.25 });
 
             document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
         });
