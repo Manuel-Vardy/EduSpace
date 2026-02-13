@@ -25,12 +25,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="bg-light">
+<body class="news-page bg-light">
 
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container d-flex justify-content-between align-items-center">
-            <a href="mailto:enquire@eduspace.com"><i class="fas fa-envelope me-2"></i>enquire@eduspace.com</a>
+            <a href="mailto:enquire@eduspace.tech"><i class="fas fa-envelope me-2"></i>enquire@eduspace.tech</a>
             <div class="top-bar-social d-flex align-items-center">
                 <a href="#"><i class="fab fa-linkedin me-1"></i> <span>LinkedIn</span></a>
                 <span class="social-separator">|</span>
@@ -44,8 +44,10 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/Asset 5.png" alt="EduSpace Logo" class="animate-float">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/Asset 5.png" alt="EduSpace Logo" class="animate-float" style="height: 50px;">
+                <span class="mx-2 text-white" style="font-size: 24px; font-weight: 300;">|</span>
+                <span class="h4 mb-0 fw-bold text-white">News</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <div class="custom-menu-icon">
@@ -56,37 +58,42 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="services.html">Our Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="products.html">Our Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Who We Are</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="news.html">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Our Stories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Products Updates</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Partnerships</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Article Content -->
-    <article class="article-content" style="padding-top: 120px; padding-bottom: 80px;">
+    <article class="article-content" style="padding-top: 180px; padding-bottom: 80px;">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <!-- Article Header -->
-                    <div class="article-header mb-4 text-center">
-                        <span class="badge bg-danger mb-3">Partnership</span>
-                        <h1 class="article-title display-5 fw-bold mb-3">EduSpace Partners with UST for Digital Growth
+                    <div class="article-header mb-5 text-center px-lg-5">
+                        <span class="badge bg-danger mb-3 px-3 py-2 rounded-pill text-uppercase"
+                            style="letter-spacing: 1px;">Partnership</span>
+                        <h1 class="article-title display-4 fw-bold mb-4">EduSpace Partners with UST for Digital Growth
                         </h1>
-                        <div class="article-meta text-muted">
-                            <span class="me-3"><i class="far fa-calendar-alt me-1"></i> October 15, 2025</span>
-                            <span class="me-3"><i class="far fa-clock me-1"></i> 5 min read</span>
-                            <span><i class="far fa-user me-1"></i> By EduSpace Team</span>
+                        <div
+                            class="article-meta d-flex justify-content-center align-items-center flex-wrap gap-4 text-muted">
+                            <div class="meta-item"><i class="far fa-calendar-alt me-2 text-danger"></i>October 15, 2025
+                            </div>
+                            <div class="meta-item"><i class="far fa-clock me-2 text-danger"></i>5 min read</div>
+                            <div class="meta-item"><i class="far fa-user me-2 text-danger"></i>By EduSpace Team</div>
                         </div>
                     </div>
 
                     <!-- Featured Image -->
-                    <div class="article-featured-image mb-5 rounded-4 overflow-hidden shadow-sm">
+                    <div class="article-featured-image mb-5 rounded-4 overflow-hidden animate-fade-up">
                         <img src="images/african-american-worker.jpg" alt="EduSpace Partners with UST"
-                            class="img-fluid w-100">
+                            class="img-fluid w-100" style="max-height: 500px; object-fit: cover;">
                     </div>
+                </div>
+                <div class="col-lg-8">
 
                     <!-- Article Body -->
                     <div class="article-body">

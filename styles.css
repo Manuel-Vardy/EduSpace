@@ -1996,6 +1996,14 @@ footer a:hover {
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
+/* Partners Ticker Styles */
+.partners-ticker-container {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+
 .partners-ticker-track {
     display: flex;
     align-items: center;
@@ -2236,18 +2244,7 @@ footer a:hover {
 }
 
 /* News Static Hero */
-.news-static-hero {
-    height: 400px;
-    background-image: url('images/News-Background.jpg');
-    background-size: cover;
-    background-position: center;
-    margin-top: 0 !important;
-    /* Reset margin as this is now a full header */
-}
 
-.news-static-hero .hero-overlay {
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%);
-}
 
 /* Ensure navbar doesn't cover content initially if it's fixed */
 body {
@@ -2344,4 +2341,24 @@ body {
     animation: hero-text-reveal 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     opacity: 0;
     /* Start hidden */
+}
+
+/* News Page Specific Styles */
+.news-page .navbar {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+}
+
+.news-page .news-slider-section {
+    padding-top: 180px !important;
+    margin-top: 20px !important;
+}
+
+@media (max-width: 768px) {
+    .news-page .news-slider-section {
+        padding-top: 100px;
+    }
+
+    /* Revert mobile hero height if it was changed globally, 
+       but here we removed the static hero so this affects the slider section tops padding */
 }
