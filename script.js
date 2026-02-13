@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Unified Scroll Reveal Animation
-    const scrollRevealThreshold = window.innerWidth < 768 ? 0.1 : 0.15;
+    const scrollRevealThreshold = window.innerWidth < 768 ? 0.25 : 0.15;
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, {
         threshold: scrollRevealThreshold,
-        rootMargin: '0px 0px -50px 0px' // Trigger slightly before it hits the viewport 
+        rootMargin: '0px 0px -80px 0px' // Delay until element is well into viewport
     });
 
     const animationSelector = '.scroll-reveal, [class*="animate-fade-"]';
