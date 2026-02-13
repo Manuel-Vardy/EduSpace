@@ -45,7 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 entry.target.classList.add('visible');
             }
         });
-    }, { threshold: scrollRevealThreshold });
+    }, {
+        threshold: scrollRevealThreshold,
+        rootMargin: '0px 0px -50px 0px' // Trigger slightly before it hits the viewport 
+    });
 
     const animationSelector = '.scroll-reveal, [class*="animate-fade-"]';
     document.querySelectorAll(animationSelector).forEach(el => observer.observe(el));

@@ -332,7 +332,9 @@ body {
 .animate-fade-left-buttons {
     opacity: 1;
     /* FAIL-SAFE: Content is visible if JS fails */
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* ACTIVE STATE: Only hide if JavaScript is loaded and ready to animate */
@@ -362,32 +364,42 @@ body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
     transform: translateX(30px);
 }
 
-/* REVEAL TRIGGERS */
+/* REVEAL TRIGGERS: Combined selectors (element itself OR descendant) */
+.visible.animate-fade-up,
 .visible .animate-fade-up,
+.active.animate-fade-up,
 .active .animate-fade-up,
 .scroll-reveal.visible .animate-fade-up {
-    animation: animate-fade-up 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.visible.animate-fade-down,
 .visible .animate-fade-down,
+.active.animate-fade-down,
 .active .animate-fade-down,
 .scroll-reveal.visible .animate-fade-down {
-    animation: animate-fade-down 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-down 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.visible.animate-fade-right,
 .visible .animate-fade-right,
+.active.animate-fade-right,
 .active .animate-fade-right,
 .scroll-reveal.visible .animate-fade-right {
-    animation: animate-fade-right 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-right 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.visible.animate-fade-left,
 .visible .animate-fade-left,
+.active.animate-fade-left,
 .active .animate-fade-left,
 .scroll-reveal.visible .animate-fade-left,
+.visible.animate-fade-left-buttons,
 .visible .animate-fade-left-buttons,
+.active.animate-fade-left-buttons,
 .active .animate-fade-left-buttons,
 .scroll-reveal.visible .animate-fade-left-buttons {
-    animation: animate-fade-left 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-left 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes animate-fade-up {
