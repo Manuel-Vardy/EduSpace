@@ -35,14 +35,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Handle scroll-reveal animations
+    // Unified Scroll Reveal Animation
+    const scrollRevealThreshold = window.innerWidth < 768 ? 0.1 : 0.15;
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: scrollRevealThreshold });
 
     document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 });

@@ -286,8 +286,7 @@ body {
 .btn-outline-custom {
     background-color: transparent;
     border: 2px solid var(--primary-white);
-    padding: 13px 40px;
-    /* Compensate for border width */
+    padding: 13px 38px;
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--primary-white);
@@ -299,6 +298,7 @@ body {
     background-color: var(--primary-white);
     color: var(--primary-black);
     transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Scroll Indicator */
@@ -406,13 +406,11 @@ body {
 .scroll-reveal.visible .animate-fade-down,
 .scroll-reveal.visible.animate-fade-down {
     animation: fadeInDown 1.5s ease forwards;
-    display: inline-block;
 }
 
 .scroll-reveal.visible .animate-fade-up,
 .scroll-reveal.visible.animate-fade-up {
     animation: fadeInUp 1.5s ease forwards;
-    display: inline-block;
 }
 
 .scroll-reveal.visible .animate-fade-left,
@@ -428,12 +426,10 @@ body {
 /* Special case for Hero Carousel - trigger when slide is .active */
 .carousel-item.active .animate-fade-down {
     animation: fadeInDown 1.5s ease forwards;
-    display: inline-block;
 }
 
 .carousel-item.active .animate-fade-up {
     animation: fadeInUp 1.5s ease forwards;
-    display: inline-block;
 }
 
 .carousel-item.active .animate-fade-left {
@@ -660,6 +656,10 @@ section {
     height: 100%;
 }
 
+.product-card-flat img {
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 /* Flat/Edge-to-Edge Product Highlights */
 .product-card-flat {
     background: transparent;
@@ -676,6 +676,8 @@ section {
 .product-card-flat .product-card-image-wrapper {
     height: 200px;
     border-radius: 0;
+    overflow: hidden;
+    /* Ensure zoom-in doesn't overflow */
 }
 
 .product-card-flat .product-card-body {
@@ -722,11 +724,179 @@ section {
 }
 
 .product-card-flat:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(0, 0, 0, 0.06);
+    /* Slightly more visible dark tint on hover */
+    transform: translateY(-5px);
     border-color: var(--primary-red);
 }
 
-/* Square Outline Explore Button */
+.home-products-section .product-card-image-wrapper {
+    overflow: hidden;
+    /* Ensure zoom stays within borders */
+}
+
+.home-products-section .product-card-flat:hover img {
+    transform: scale(1.1);
+    /* Zoom effect only for Our Products */
+}
+
+/* Testimonials Section & Ticker */
+.testimonials-section {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('images/team-watching-presentation.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 100px 0;
+    color: var(--primary-white);
+    overflow: hidden;
+    /* Prevent horizontal scrollbar */
+}
+
+.testimonials-ticker-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.testimonials-ticker-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: infinite-scroll 40s linear infinite;
+}
+
+.testimonials-ticker-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes infinite-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+        /* Scroll half total width (original set) */
+    }
+}
+
+.testimonial-card-wrap {
+    width: 400px;
+    /* Fixed width for ticker cards */
+    flex-shrink: 0;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s ease;
+}
+
+.testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-10px);
+    border-color: var(--primary-red);
+}
+
+.testimonial-stars {
+    color: #FFD700;
+    /* Gold Stars */
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+}
+
+.testimonial-quote {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-red);
+}
+
+.author-info h4 {
+    color: var(--primary-red);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.author-info p {
+    color: #aaaaaa;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Align heading and underline to the left for Testimonials */
+.testimonials-section .text-center {
+    text-align: left !important;
+}
+
+.testimonials-section .section-title::after {
+    margin: 5px 0 0 !important;
+    left: 0;
+    transform: translateX(0);
+}
+
+/* Mobile Refinements for Testimonials */
+@media (max-width: 767px) {
+    .testimonials-section .text-center {
+        margin-bottom: 1.5rem !important;
+        /* Reduced from mb-5 (3rem) */
+    }
+
+    .testimonials-ticker-container {
+        padding: 5px 0;
+        /* Reduced vertical padding */
+    }
+
+    .testimonial-card-wrap {
+        width: 300px;
+        /* Reduced width on mobile */
+    }
+
+    .testimonial-card {
+        padding: 25px;
+        /* Reduced padding to "shrink" height */
+    }
+
+    .testimonial-quote {
+        font-size: 0.95rem;
+        /* Smaller font for height reduction */
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+
+    .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .author-info h4 {
+        font-size: 1rem;
+    }
+}
+
 .btn-explore {
     padding: 12px 35px;
     border: 2px solid var(--primary-red);
@@ -796,10 +966,12 @@ section {
 .section-title::after {
     content: '';
     display: block;
-    width: 100px;
-    height: 1.5px;
-    background: var(--primary-black);
-    margin: 7px 0;
+    width: 60px;
+    height: 3.5px;
+    background: var(--primary-red);
+    margin: 10px auto 0;
+    border-radius: 5px;
+    animation: underlineOscillate 3s ease-in-out infinite;
 }
 
 /* Footer */
@@ -959,6 +1131,24 @@ footer a:hover {
 
 .icon-wrap {
     flex: 0 0 60px;
+}
+
+/* Service Highlights Button Alignment */
+.services-highlight .p-3.h-100 {
+    display: flex;
+    flex-direction: column;
+}
+
+.services-highlight .animate-fade-left {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.services-highlight .animate-fade-left a {
+    margin-top: auto;
+    padding-top: 15px;
+    /* Add some breathing room */
 }
 
 .item-icon {
@@ -1142,10 +1332,11 @@ footer a:hover {
 /* Entrance Animations */
 .animate-fade-up,
 .animate-fade-down,
-.animate-fade-right {
+.animate-fade-right,
+.animate-fade-left {
     opacity: 0;
-    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-    transition-property: opacity, transform;
+    transition: opacity 0.8s ease;
+    /* Fallback */
 }
 
 .animate-fade-up {
@@ -1160,11 +1351,28 @@ footer a:hover {
     transform: translateX(-30px);
 }
 
+.animate-fade-left {
+    transform: translateX(30px);
+}
+
 .visible .animate-fade-up,
+.scroll-reveal.visible .animate-fade-up {
+    animation: animate-fade-up 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
 .visible .animate-fade-down,
-.visible .animate-fade-right {
-    opacity: 1;
-    transform: translate(0);
+.scroll-reveal.visible .animate-fade-down {
+    animation: animate-fade-down 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.visible .animate-fade-right,
+.scroll-reveal.visible .animate-fade-right {
+    animation: animate-fade-right 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.visible .animate-fade-left,
+.scroll-reveal.visible .animate-fade-left {
+    animation: animate-fade-left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 @keyframes animate-fade-up {
@@ -1176,6 +1384,18 @@ footer a:hover {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Response to user request: Snappier mobile animations */
+@media (max-width: 767px) {
+
+    .animate-fade-up,
+    .animate-fade-right,
+    .animate-fade-left {
+        animation-delay: 0.1s !important;
+        /* Reduce wait time on mobile */
+        transition-delay: 0.1s !important;
     }
 }
 
@@ -1195,6 +1415,18 @@ footer a:hover {
     from {
         opacity: 0;
         transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes animate-fade-left {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
     }
 
     to {
@@ -1437,10 +1669,11 @@ footer a:hover {
 
 .trust-section .section-title::after {
     background: var(--primary-white);
-    /* White underline */
-    width: 80px;
-    height: 3px;
-    border-radius: 2px;
+    /* White underline for dark background */
+    width: 60px;
+    height: 3.5px;
+    border-radius: 5px;
+    margin: 10px auto 0;
     animation: underlineOscillate 3s ease-in-out infinite;
 }
 
@@ -1499,8 +1732,8 @@ footer a:hover {
     flex-direction: column;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
-    background-color: #ffffff;
-    /* White Background */
+    background: #ffffff;
+    /* White with subtle black gradient from bottom */
     overflow: visible;
     /* To allow arrows to poke out */
     z-index: 1;
@@ -1587,15 +1820,15 @@ footer a:hover {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: rgba(227, 30, 36, 0.1);
-    /* Subtle Red BG */
+    background-color: rgba(0, 0, 0, 0.05);
+    /* Subtle Black/Grey BG */
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 25px;
     font-size: 1.4rem;
-    color: var(--primary-red);
-    /* Red Icon */
+    color: var(--primary-black);
+    /* Solid Black Icon */
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     animation: glitchShake 0.8s infinite;
 }
@@ -1658,8 +1891,8 @@ footer a:hover {
 }
 
 .trust-segment:hover .trust-icon-circle {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--primary-red);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
     transform: scale(1.15) rotate(8deg);
     animation: none;
     /* Pause glitch on hover to allow the hover transform */
@@ -1729,34 +1962,8 @@ footer a:hover {
     display: none;
 }
 
-/* Mobile Adjustments for Trust Section */
+/* Tablet and Mobile Adjustments for Trust Section */
 @media (max-width: 991px) {
-    .trust-flow-container {
-        flex-direction: column;
-        max-width: 500px;
-        margin: 0 auto;
-        overflow: visible;
-        /* Ensure container doesn't clip */
-    }
-
-    .trust-segment {
-        border-right: none !important;
-        border-bottom: 1px solid #e0e0e0;
-        padding: 40px 25px;
-        overflow: visible;
-        /* Ensure segment doesn't clip */
-    }
-
-    .trust-segment:first-child:hover,
-    .trust-segment:first-child::before {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .trust-segment:last-child:hover,
-    .trust-segment:last-child::before {
-        border-radius: 0 0 12px 12px;
-    }
-
     .trust-section .container.text-center {
         text-align: left !important;
         margin-bottom: 30px !important;
@@ -1772,18 +1979,96 @@ footer a:hover {
         animation: underlineOscillateMobile 3s ease-in-out infinite;
     }
 
-    @keyframes underlineOscillateMobile {
-        0% {
-            transform: translateX(0);
-        }
+    .trust-flow-container {
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: visible;
+    }
+}
 
-        50% {
-            transform: translateX(30px);
-        }
+/* Tablet Specific (2x2 Grid) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .trust-segment {
+        flex: 0 0 50%;
+        border-right: 1px solid #e0e0e0 !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+        border-radius: 0 !important;
+    }
 
-        100% {
-            transform: translateX(0);
-        }
+    .trust-segment:nth-child(2n) {
+        border-right: none !important;
+    }
+
+    .trust-segment:nth-child(3),
+    .trust-segment:nth-child(4) {
+        border-bottom: none !important;
+    }
+
+    /* Column-specific border radius for 2x2 grid */
+    .trust-segment:nth-child(1) {
+        border-radius: 12px 0 0 0 !important;
+    }
+
+    .trust-segment:nth-child(2) {
+        border-radius: 0 12px 0 0 !important;
+    }
+
+    .trust-segment:nth-child(3) {
+        border-radius: 0 0 0 12px !important;
+    }
+
+    .trust-segment:nth-child(4) {
+        border-radius: 0 0 12px 0 !important;
+    }
+
+    /* Flow arrows for 2x2: Hide on end of row 1 */
+    .trust-segment:nth-child(2) .trust-flow-arrow {
+        display: none;
+    }
+
+    /* Stacking order fix for tablet: Ensure top cards are above bottom cards so arrows show */
+    .trust-segment:nth-child(1) {
+        z-index: 4;
+    }
+
+    .trust-segment:nth-child(2) {
+        z-index: 3;
+    }
+
+    .trust-segment:nth-child(3) {
+        z-index: 2;
+    }
+
+    .trust-segment:nth-child(4) {
+        z-index: 1;
+    }
+}
+
+/* Mobile Specific (1 Column) */
+@media (max-width: 767px) {
+    .trust-flow-container {
+        flex-direction: column;
+        max-width: 500px;
+    }
+
+    .trust-segment {
+        flex: 0 0 100%;
+        border-right: none !important;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 40px 25px;
+        border-radius: 0 !important;
+        overflow: visible;
+        /* Ensure segment doesn't clip */
+    }
+
+    .trust-segment:first-child {
+        border-radius: 12px 12px 0 0 !important;
+    }
+
+    .trust-segment:last-child {
+        border-radius: 0 0 12px 12px !important;
+        border-bottom: none;
     }
 
     .trust-flow-arrow {
@@ -1793,7 +2078,6 @@ footer a:hover {
         top: auto;
         transform: translateX(-50%) rotate(90deg);
         z-index: 101;
-        /* Ensure above everything on mobile */
     }
 
     /* Stacking order fix for mobile: Ensure top cards are above bottom cards so arrows show */
@@ -1811,5 +2095,19 @@ footer a:hover {
 
     .trust-segment:nth-child(4) {
         z-index: 1;
+    }
+}
+
+@keyframes underlineOscillateMobile {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(30px);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }
