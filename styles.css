@@ -331,27 +331,54 @@ body {
 .animate-fade-left,
 .animate-fade-left-buttons {
     opacity: 1;
-    /* Content always visible by default for resilience */
-    transition: opacity 0.8s ease;
+    /* FAIL-SAFE: Content is visible if JS fails */
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Animation triggers for both ScrollReveal and Carousel */
+/* ACTIVE STATE: Only hide if JavaScript is loaded and ready to animate */
+body.js-ready .animate-fade-up:not(.visible):not(.active),
+body.js-ready .scroll-reveal:not(.visible) .animate-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+body.js-ready .animate-fade-down:not(.visible):not(.active),
+body.js-ready .scroll-reveal:not(.visible) .animate-fade-down {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+body.js-ready .animate-fade-right:not(.visible):not(.active),
+body.js-ready .scroll-reveal:not(.visible) .animate-fade-right {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+body.js-ready .animate-fade-left:not(.visible):not(.active),
+body.js-ready .scroll-reveal:not(.visible) .animate-fade-left,
+body.js-ready .animate-fade-left-buttons:not(.visible):not(.active),
+body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+/* REVEAL TRIGGERS */
 .visible .animate-fade-up,
 .active .animate-fade-up,
 .scroll-reveal.visible .animate-fade-up {
-    animation: animate-fade-up 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-up 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .visible .animate-fade-down,
 .active .animate-fade-down,
 .scroll-reveal.visible .animate-fade-down {
-    animation: animate-fade-down 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-down 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .visible .animate-fade-right,
 .active .animate-fade-right,
 .scroll-reveal.visible .animate-fade-right {
-    animation: animate-fade-right 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    animation: animate-fade-right 1.0s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .visible .animate-fade-left,
@@ -363,61 +390,68 @@ body {
     animation: animate-fade-left 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-.carousel-item.active .animate-fade-left {
-    animation: fadeInLeft 1.5s ease forwards;
-}
-
-.carousel-item.active .animate-fade-left-buttons {
-    animation: fadeInLeft 1.5s ease forwards;
-}
-
-/* Solutions Specific Animations */
-@keyframes slideInFromRight {
+@keyframes animate-fade-up {
     from {
         opacity: 0;
-        transform: translateX(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInFromLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.scroll-reveal.visible .trust-animate-left {
-    animation: slideInFromLeft 1.2s ease forwards;
-    opacity: 0;
-    /* Ensure hidden before animation */
-}
-
-.scroll-reveal.visible .trust-animate-right {
-    animation: slideInFromRight 1.2s ease forwards;
-    opacity: 0;
-    /* Ensure hidden before animation */
-}
-
-@keyframes slideInFromTop {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
+        transform: translateY(30px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes animate-fade-down {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes animate-fade-right {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes animate-fade-left {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes auto-pulse {
@@ -466,23 +500,6 @@ body {
     100% {
         border-color: transparent;
     }
-}
-
-/* Base state for Solutions scroll-reveal child elements */
-.scroll-reveal .animate-from-right,
-.scroll-reveal .animate-from-top {
-    opacity: 0;
-}
-
-/* Animation triggers when .visible is added */
-.scroll-reveal.visible .animate-from-right,
-.scroll-reveal.visible.animate-from-right {
-    animation: slideInFromRight 0.8s ease forwards;
-}
-
-.scroll-reveal.visible .animate-from-top,
-.scroll-reveal.visible.animate-from-top {
-    animation: slideInFromTop 0.8s ease forwards;
 }
 
 /* Ensure pulse animations only start when visible */
@@ -1297,30 +1314,6 @@ footer a:hover {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes animate-fade-right {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes animate-fade-left {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
     }
 }
 

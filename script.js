@@ -47,5 +47,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }, { threshold: scrollRevealThreshold });
 
-    document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    const animationSelector = '.scroll-reveal, [class*="animate-fade-"]';
+    document.querySelectorAll(animationSelector).forEach(el => observer.observe(el));
 });
