@@ -72,21 +72,237 @@
         </div>
     </nav>
 
-    <header class="page-header bg-dark text-white text-center">
-        <div class="container">
-            <h1 class="display-4 animate-fade-down">Latest News</h1>
-            <p class="lead animate-fade-up" style="animation-delay: 0.3s;">Updates and insights from EduSpace.</p>
+    <!-- Static Hero Section -->
+    <div
+        class="news-static-hero d-flex align-items-center justify-content-center text-center text-white position-relative">
+        <div class="hero-overlay"></div>
+        <div class="container position-relative z-2">
+            <h1 class="display-3 fw-bold text-uppercase hero-entrance">News & Update</h1>
         </div>
-    </header>
+    </div>
 
-    <section class="section-padding" style="min-height: 50vh;">
+    <!-- News Slider Section -->
+    <section class="news-slider-section py-5">
         <div class="container">
-            <div class="row scroll-reveal">
-                <div class="col-12 text-center">
-                    <p class="lead text-muted">Stay tuned for the latest news and updates.</p>
-                    <div class="alert alert-info d-inline-block">
-                        <i class="fas fa-newspaper me-2"></i> No articles available at the moment.
+            <!-- Carousel -->
+            <div id="newsCarousel"
+                class="carousel slide carousel-fade rounded-4 overflow-hidden shadow-lg animate-fade-up"
+                data-bs-ride="carousel" data-bs-pause="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#newsCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="news-slide-item"
+                            style="background-image: url('images/african-american-worker.jpg');">
+                            <div class="news-slide-overlay">
+                                <span class="badge bg-danger mb-2">Partnership</span>
+                                <h2 class="display-5 fw-bold text-white mb-3">EduSpace Partners with UST for Digital
+                                    Growth</h2>
+                                <p class="lead text-white-50 mb-4 d-none d-md-block">A strategic alliance to enhance
+                                    digital infrastructure across universities in Ghana.</p>
+                                <a href="news-details.html" class="btn btn-outline-light rounded-pill px-4">Read Full
+                                    Story</a>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div class="news-slide-item"
+                            style="background-image: url('images/smiling-architects-looking-blueprint.jpg');">
+                            <div class="news-slide-overlay">
+                                <span class="badge bg-primary mb-2">Product Launch</span>
+                                <h2 class="display-5 fw-bold text-white mb-3">Launching GEDP 2.0: The Future of EdTech
+                                </h2>
+                                <p class="lead text-white-50 mb-4 d-none d-md-block">Introducing advanced analytics and
+                                    AI-driven learning paths for students nationwide.</p>
+                                <a href="news-details.html" class="btn btn-outline-light rounded-pill px-4">Read Full
+                                    Story</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div class="news-slide-item"
+                            style="background-image: url('images/two-men-standing-with-lap.jpg');">
+                            <div class="news-slide-overlay">
+                                <span class="badge bg-success mb-2">Innovation Award</span>
+                                <h2 class="display-5 fw-bold text-white mb-3">EduSpace Wins Top Tech Innovation Award
+                                </h2>
+                                <p class="lead text-white-50 mb-4 d-none d-md-block">Recognized for outstanding
+                                    contribution to digital transformation in the education sector.</p>
+                                <a href="news-details.html" class="btn btn-outline-light rounded-pill px-4">Read Full
+                                    Story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Grid Section -->
+    <section class="news-grid-section py-5 bg-light">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-5 border-bottom pb-3">
+                <h2 class="fw-bold">Latest Updates</h2>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle rounded-pill" type="button"
+                        data-bs-toggle="dropdown">
+                        Filter by
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">All News</a></li>
+                        <li><a class="dropdown-item" href="#">Products</a></li>
+                        <li><a class="dropdown-item" href="#">Events</a></li>
+                        <li><a class="dropdown-item" href="#">Partnerships</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <!-- Grid Item 1 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.1s;">
+                    <a href="news-details.html" class="text-decoration-none text-dark">
+                        <div class="news-hub-card">
+                            <div class="news-hub-image">
+                                <img src="images/smiling-architects-looking-blueprint.jpg" alt="News Image">
+                                <span class="category-tag">Product</span>
+                            </div>
+                            <div class="news-hub-body">
+                                <div class="news-date">Sep 28, 2025</div>
+                                <h3 class="news-heading">Launching GEDP 2.0: The Future of EdTech</h3>
+                                <p class="news-desc">Introducing advanced analytics and AI-driven learning paths for
+                                    students nationwide.</p>
+                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Grid Item 2 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.2s;">
+                    <a href="news-details.html" class="text-decoration-none text-dark">
+                        <div class="news-hub-card">
+                            <div class="news-hub-image">
+                                <img src="images/two-men-standing-with-lap.jpg" alt="News Image">
+                                <span class="category-tag">Award</span>
+                            </div>
+                            <div class="news-hub-body">
+                                <div class="news-date">Aug 10, 2025</div>
+                                <h3 class="news-heading">EduSpace Wins Top Tech Innovation Award</h3>
+                                <p class="news-desc">Recognized for outstanding contribution to digital
+                                    transformation
+                                    in the education sector.</p>
+                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Grid Item 3 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.3s;">
+                    <a href="news-details.html" class="text-decoration-none text-dark">
+                        <div class="news-hub-card">
+                            <div class="news-hub-image">
+                                <img src="images/women-seal-report.jpg" alt="News Image">
+                                <span class="category-tag">Community</span>
+                            </div>
+                            <div class="news-hub-body">
+                                <div class="news-date">Jul 05, 2025</div>
+                                <h3 class="news-heading">Empowering Rural Schools with Digital Tools</h3>
+                                <p class="news-desc">Our latest initiative brings computer labs and internet access
+                                    to
+                                    remote areas.</p>
+                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Grid Item 4 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.4s;">
+                    <a href="news-details.html" class="text-decoration-none text-dark">
+                        <div class="news-hub-card">
+                            <div class="news-hub-image">
+                                <img src="images/African workers engineer.jpg" alt="News Image">
+                                <span class="category-tag">Engineering</span>
+                            </div>
+                            <div class="news-hub-body">
+                                <div class="news-date">Jun 20, 2025</div>
+                                <h3 class="news-heading">New Engineering Portal Live</h3>
+                                <p class="news-desc">Streamlining the recruitment process for engineering firms
+                                    across
+                                    West Africa.</p>
+                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Grid Item 5 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.5s;">
+                    <a href="news-details.html" class="text-decoration-none text-dark">
+                        <div class="news-hub-card">
+                            <div class="news-hub-image">
+                                <img src="images/checking-products.jpg" alt="News Image">
+                                <span class="category-tag">Agro-Tech</span>
+                            </div>
+                            <div class="news-hub-body">
+                                <div class="news-date">May 12, 2025</div>
+                                <h3 class="news-heading">Micare Farms Digitization Project</h3>
+                                <p class="news-desc">How we helped one of Ghana's largest farms increase yield
+                                    through
+                                    data.</p>
+                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Grid Item 6 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.6s;">
+                    <a href="news-details.html" class="text-decoration-none text-dark">
+                        <div class="news-hub-card">
+                            <div class="news-hub-image">
+                                <img src="images/team-watching-presentation.jpg" alt="News Image">
+                                <span class="category-tag">Company</span>
+                            </div>
+                            <div class="news-hub-body">
+                                <div class="news-date">Apr 01, 2025</div>
+                                <h3 class="news-heading">EduSpace Turns 5!</h3>
+                                <p class="news-desc">Celebrating half a decade of innovation and impact in the
+                                    African
+                                    tech space.</p>
+                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-outline-danger px-5 py-2 rounded-pill">Load More News</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section text-white text-center py-5" style="background-color: #000;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="mb-3">Subscribe to our Newsletter</h2>
+                    <p class="mb-4 text-white-50">Get the latest news and insights delivered straight to your inbox.
+                    </p>
+                    <form class="d-flex justify-content-center gap-2 flex-wrap">
+                        <input type="email" class="form-control w-auto" placeholder="Enter your email"
+                            style="min-width: 300px;">
+                        <button class="btn btn-danger px-4">Subscribe</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -122,7 +338,8 @@
             </div>
             <hr style="border-color: #555;">
             <div class="text-center">
-                <small>&copy; 2026 EduSpace. All Rights Reserved.</small>
+                <small>&copy; 2026 EduSpace. All Rights Reserved.<br><span style="font-size: 0.8em; opacity: 0.7;">All
+                        Our Products Are Licensed And Certified By Data Protection Commission.</span></small>
             </div>
         </div>
     </footer>

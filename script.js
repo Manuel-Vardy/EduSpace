@@ -52,46 +52,48 @@ document.addEventListener('DOMContentLoaded', function () {
     const animationSelector = '.scroll-reveal, [class*="animate-fade-"]';
     document.querySelectorAll(animationSelector).forEach(el => observer.observe(el));
 
-    // Testimonial Ticker Interactive Auto-Scroll
-    const tickerContainer = document.querySelector('.testimonials-ticker-container');
-    const tickerTrack = document.querySelector('.testimonials-ticker-track');
+    // Generic Ticker Function for Testimonials and Partners
+    const initTicker = (containerSelector, trackSelector, speed = 0.5) => {
+        const container = document.querySelector(containerSelector);
+        const track = document.querySelector(trackSelector);
 
-    if (tickerContainer && tickerTrack) {
-        let isInteracting = false;
-        let scrollSpeed = 0.5; // Pixels per frame
+        if (container && track) {
+            let isInteracting = false;
 
-        const step = () => {
-            if (!isInteracting) {
-                tickerContainer.scrollLeft += scrollSpeed;
+            const step = () => {
+                if (!isInteracting) {
+                    container.scrollLeft += speed;
 
-                // Infinite Loop: Reset when half scrolled
-                // We scroll the container, and the track contains two identical sets.
-                // Reset to 0 when we've scrolled past the first set.
-                if (tickerContainer.scrollLeft >= tickerTrack.scrollWidth / 2) {
-                    tickerContainer.scrollLeft = 0;
+                    // Infinite Loop: Reset when half scrolled
+                    if (container.scrollLeft >= track.scrollWidth / 2) {
+                        container.scrollLeft = 0;
+                    }
                 }
-            }
+                requestAnimationFrame(step);
+            };
+
+            // Start the loop
             requestAnimationFrame(step);
-        };
 
-        // Start the loop
-        requestAnimationFrame(step);
+            // Interruption listeners
+            const startInteracting = () => { isInteracting = true; };
+            const endInteracting = () => {
+                isInteracting = false;
+                // Seamless loop snap-back
+                if (container.scrollLeft >= track.scrollWidth / 2) {
+                    container.scrollLeft -= track.scrollWidth / 2;
+                }
+            };
 
-        // Interruption listeners
-        const startInteracting = () => { isInteracting = true; };
-        const endInteracting = () => {
-            isInteracting = false;
-            // If user swiped past the halfway point, snap them back to the first set
-            // so the loop remains infinite and seamless.
-            if (tickerContainer.scrollLeft >= tickerTrack.scrollWidth / 2) {
-                tickerContainer.scrollLeft -= tickerTrack.scrollWidth / 2;
-            }
-        };
+            container.addEventListener('mouseenter', startInteracting);
+            container.addEventListener('mouseleave', endInteracting);
+            container.addEventListener('touchstart', startInteracting, { passive: true });
+            container.addEventListener('touchend', endInteracting, { passive: true });
+            container.addEventListener('touchcancel', endInteracting, { passive: true });
+        }
+    };
 
-        tickerContainer.addEventListener('mouseenter', startInteracting);
-        tickerContainer.addEventListener('mouseleave', endInteracting);
-        tickerContainer.addEventListener('touchstart', startInteracting, { passive: true });
-        tickerContainer.addEventListener('touchend', endInteracting, { passive: true });
-        tickerContainer.addEventListener('touchcancel', endInteracting, { passive: true });
-    }
+    // Initialize Tickers
+    initTicker('.testimonials-ticker-container', '.testimonials-ticker-track', 0.5);
+    initTicker('.partners-ticker-container', '.partners-ticker-track', 0.4);
 });
