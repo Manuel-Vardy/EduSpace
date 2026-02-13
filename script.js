@@ -52,19 +52,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const animationSelector = '.scroll-reveal, [class*="animate-fade-"]';
     document.querySelectorAll(animationSelector).forEach(el => observer.observe(el));
 
-    // Testimonial Ticker Interaction (Mobile)
+    // Testimonial Ticker Interactive Auto-Scroll
+    const tickerContainer = document.querySelector('.testimonials-ticker-container');
     const tickerTrack = document.querySelector('.testimonials-ticker-track');
-    if (tickerTrack) {
-        tickerTrack.addEventListener('touchstart', () => {
-            tickerTrack.classList.add('is-paused');
-        }, { passive: true });
 
-        tickerTrack.addEventListener('touchend', () => {
-            tickerTrack.classList.remove('is-paused');
-        }, { passive: true });
+    if (tickerContainer && tickerTrack) {
+        let isInteracting = false;
+        let scrollSpeed = 0.5; // Pixels per frame
 
-        tickerTrack.addEventListener('touchcancel', () => {
-            tickerTrack.classList.remove('is-paused');
-        }, { passive: true });
+        const step = () => {
+            if (!isInteracting) {
+                tickerContainer.scrollLeft += scrollSpeed;
+
+                // Infinite Loop: Reset when half scrolled
+                // We scroll the container, and the track contains two identical sets.
+                // Reset to 0 when we've scrolled past the first set.
+                if (tickerContainer.scrollLeft >= tickerTrack.scrollWidth / 2) {
+                    tickerContainer.scrollLeft = 0;
+                }
+            }
+            requestAnimationFrame(step);
+        };
+
+        // Start the loop
+        requestAnimationFrame(step);
+
+        // Interruption listeners
+        const startInteracting = () => { isInteracting = true; };
+        const endInteracting = () => {
+            isInteracting = false;
+            // If user swiped past the halfway point, snap them back to the first set
+            // so the loop remains infinite and seamless.
+            if (tickerContainer.scrollLeft >= tickerTrack.scrollWidth / 2) {
+                tickerContainer.scrollLeft -= tickerTrack.scrollWidth / 2;
+            }
+        };
+
+        tickerContainer.addEventListener('mouseenter', startInteracting);
+        tickerContainer.addEventListener('mouseleave', endInteracting);
+        tickerContainer.addEventListener('touchstart', startInteracting, { passive: true });
+        tickerContainer.addEventListener('touchend', endInteracting, { passive: true });
+        tickerContainer.addEventListener('touchcancel', endInteracting, { passive: true });
     }
 });

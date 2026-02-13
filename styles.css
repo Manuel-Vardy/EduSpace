@@ -715,31 +715,26 @@ section {
 
 .testimonials-ticker-container {
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     padding: 20px 0;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Hide scrollbar Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar IE/Edge */
+}
+
+.testimonials-ticker-container::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar Chrome/Safari */
 }
 
 .testimonials-ticker-track {
-    display: flex;
+    display: inline-flex;
     gap: 30px;
     width: max-content;
-    animation: infinite-scroll 40s linear infinite;
-}
-
-.testimonials-ticker-track:hover,
-.testimonials-ticker-track.is-paused {
-    animation-play-state: paused;
-}
-
-@keyframes infinite-scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-        /* Scroll half total width (original set) */
-    }
 }
 
 .testimonial-card-wrap {
@@ -760,6 +755,7 @@ section {
     transition: all 0.4s ease;
     user-select: none;
     -webkit-user-select: none;
+    white-space: normal;
 }
 
 .testimonial-card:hover {
