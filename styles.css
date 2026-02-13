@@ -758,6 +758,8 @@ section {
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.4s ease;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .testimonial-card:hover {

@@ -62,5 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
         tickerTrack.addEventListener('touchend', () => {
             tickerTrack.classList.remove('is-paused');
         }, { passive: true });
+
+        tickerTrack.addEventListener('touchcancel', () => {
+            tickerTrack.classList.remove('is-paused');
+        }, { passive: true });
     }
 });
