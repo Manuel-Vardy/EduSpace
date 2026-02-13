@@ -51,4 +51,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const animationSelector = '.scroll-reveal, [class*="animate-fade-"]';
     document.querySelectorAll(animationSelector).forEach(el => observer.observe(el));
+
+    // Testimonial Ticker Interaction (Mobile)
+    const tickerTrack = document.querySelector('.testimonials-ticker-track');
+    if (tickerTrack) {
+        tickerTrack.addEventListener('touchstart', () => {
+            tickerTrack.classList.add('is-paused');
+        }, { passive: true });
+
+        tickerTrack.addEventListener('touchend', () => {
+            tickerTrack.classList.remove('is-paused');
+        }, { passive: true });
+    }
 });
