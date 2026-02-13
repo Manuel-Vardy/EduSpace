@@ -399,7 +399,7 @@ body {
 .scroll-reveal .animate-fade-up,
 .scroll-reveal .animate-fade-left,
 .scroll-reveal .animate-fade-left-buttons {
-    opacity: 0;
+    opacity: 1;
 }
 
 /* Animation triggers when .visible is added by IntersectionObserver */

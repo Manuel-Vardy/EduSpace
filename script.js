@@ -5,35 +5,35 @@ document.addEventListener('DOMContentLoaded', function () {
     let lastScrollY = window.scrollY;
     let ticking = false;
 
-    window.addEventListener('scroll', function () {
-        if (!ticking) {
-            window.requestAnimationFrame(function () {
-                const currentScrollY = window.scrollY;
-                const scrollThreshold = 50;
+    if (navbar) {
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    const currentScrollY = window.scrollY;
+                    const scrollThreshold = 50;
 
-                if (currentScrollY < scrollThreshold) {
-                    navbar.classList.remove('scrolled', 'scrolled-visible');
-                } else {
-                    navbar.classList.add('scrolled');
+                    if (currentScrollY < scrollThreshold) {
+                        navbar.classList.remove('scrolled', 'scrolled-visible');
+                    } else {
+                        navbar.classList.add('scrolled');
 
-                    // Direction detection with 5px buffer to prevent jitter on mobile devices
-                    const scrollDelta = lastScrollY - currentScrollY;
+                        // Direction detection with 5px buffer
+                        const scrollDelta = lastScrollY - currentScrollY;
 
-                    if (scrollDelta > 5) {
-                        // Scrolling UP - Show fixed navbar
-                        navbar.classList.add('scrolled-visible');
-                    } else if (scrollDelta < -5) {
-                        // Scrolling DOWN - Hide fixed navbar
-                        navbar.classList.remove('scrolled-visible');
+                        if (scrollDelta > 5) {
+                            navbar.classList.add('scrolled-visible');
+                        } else if (scrollDelta < -5) {
+                            navbar.classList.remove('scrolled-visible');
+                        }
                     }
-                }
 
-                lastScrollY = currentScrollY;
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
+                    lastScrollY = currentScrollY;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
 
     // Unified Scroll Reveal Animation
     const scrollRevealThreshold = window.innerWidth < 768 ? 0.1 : 0.15;
