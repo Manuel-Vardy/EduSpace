@@ -324,112 +324,43 @@ body {
     margin-top: 10px;
 }
 
-/* Animations */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.scroll-reveal {
+/* Standard Reveal Animations - Safety First Base State */
+.animate-fade-up,
+.animate-fade-down,
+.animate-fade-right,
+.animate-fade-left,
+.animate-fade-left-buttons {
     opacity: 1;
-    /* Changed from 0 to 1 to ensure visibility */
-    transform: translateY(0);
-    /* Changed from 30px to 0 */
-    transition: all 0.8s ease-out;
+    /* Content always visible by default for resilience */
+    transition: opacity 0.8s ease;
 }
 
-/* Optional: We can still use the class to animate if we want to add an animation on scroll, 
-   but ensuring visibility is priority. */
-.scroll-reveal.animate-in {
-    animation: fadeInUp 1s ease-out;
+/* Animation triggers for both ScrollReveal and Carousel */
+.visible .animate-fade-up,
+.active .animate-fade-up,
+.scroll-reveal.visible .animate-fade-up {
+    animation: animate-fade-up 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.visible .animate-fade-down,
+.active .animate-fade-down,
+.scroll-reveal.visible .animate-fade-down {
+    animation: animate-fade-down 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
+.visible .animate-fade-right,
+.active .animate-fade-right,
+.scroll-reveal.visible .animate-fade-right {
+    animation: animate-fade-right 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-/* Specific Animation Classes */
-.animate-float {
-    animation: float 3s ease-in-out infinite;
-}
-
-/* Base state for scroll-reveal elements - ensure children are hidden */
-.scroll-reveal .animate-fade-down,
-.scroll-reveal .animate-fade-up,
-.scroll-reveal .animate-fade-left,
-.scroll-reveal .animate-fade-left-buttons {
-    opacity: 1;
-}
-
-/* Animation triggers when .visible is added by IntersectionObserver */
-.scroll-reveal.visible .animate-fade-down,
-.scroll-reveal.visible.animate-fade-down {
-    animation: fadeInDown 1.5s ease forwards;
-}
-
-.scroll-reveal.visible .animate-fade-up,
-.scroll-reveal.visible.animate-fade-up {
-    animation: fadeInUp 1.5s ease forwards;
-}
-
+.visible .animate-fade-left,
+.active .animate-fade-left,
 .scroll-reveal.visible .animate-fade-left,
-.scroll-reveal.visible.animate-fade-left {
-    animation: fadeInLeft 1.5s ease forwards;
-}
-
-.scroll-reveal.visible .animate-fade-left-buttons,
-.scroll-reveal.visible.animate-fade-left-buttons {
-    animation: fadeInLeft 1.5s ease forwards;
-}
-
-/* Special case for Hero Carousel - trigger when slide is .active */
-.carousel-item.active .animate-fade-down {
-    animation: fadeInDown 1.5s ease forwards;
-}
-
-.carousel-item.active .animate-fade-up {
-    animation: fadeInUp 1.5s ease forwards;
+.visible .animate-fade-left-buttons,
+.active .animate-fade-left-buttons,
+.scroll-reveal.visible .animate-fade-left-buttons {
+    animation: animate-fade-left 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 .carousel-item.active .animate-fade-left {
@@ -1329,50 +1260,20 @@ footer a:hover {
     color: var(--primary-red);
 }
 
-/* Entrance Animations */
-.animate-fade-up,
-.animate-fade-down,
-.animate-fade-right,
-.animate-fade-left {
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    /* Fallback */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.animate-fade-up {
-    transform: translateY(30px);
-}
-
-.animate-fade-down {
-    transform: translateY(-30px);
-}
-
-.animate-fade-right {
-    transform: translateX(-30px);
-}
-
-.animate-fade-left {
-    transform: translateX(30px);
-}
-
-.visible .animate-fade-up,
-.scroll-reveal.visible .animate-fade-up {
-    animation: animate-fade-up 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.visible .animate-fade-down,
-.scroll-reveal.visible .animate-fade-down {
-    animation: animate-fade-down 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.visible .animate-fade-right,
-.scroll-reveal.visible .animate-fade-right {
-    animation: animate-fade-right 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-}
-
-.visible .animate-fade-left,
-.scroll-reveal.visible .animate-fade-left {
-    animation: animate-fade-left 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+.animate-float {
+    animation: float 3s ease-in-out infinite;
 }
 
 @keyframes animate-fade-up {
@@ -1384,18 +1285,6 @@ footer a:hover {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Response to user request: Snappier mobile animations */
-@media (max-width: 767px) {
-
-    .animate-fade-up,
-    .animate-fade-right,
-    .animate-fade-left {
-        animation-delay: 0.1s !important;
-        /* Reduce wait time on mobile */
-        transition-delay: 0.1s !important;
     }
 }
 
