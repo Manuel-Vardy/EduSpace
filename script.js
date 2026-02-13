@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.body.classList.add('js-ready');
     const navbar = document.querySelector('.navbar');
     const hero = document.querySelector('.hero') || document.querySelector('.page-header');
 

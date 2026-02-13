@@ -338,28 +338,28 @@ body {
 }
 
 /* ACTIVE STATE: Only hide if JavaScript is loaded and ready to animate */
-body.js-ready .animate-fade-up:not(.visible):not(.active),
-body.js-ready .scroll-reveal:not(.visible) .animate-fade-up {
+html.js-enabled .animate-fade-up:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-fade-up {
     opacity: 0;
     transform: translateY(30px);
 }
 
-body.js-ready .animate-fade-down:not(.visible):not(.active),
-body.js-ready .scroll-reveal:not(.visible) .animate-fade-down {
+html.js-enabled .animate-fade-down:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-fade-down {
     opacity: 0;
     transform: translateY(-30px);
 }
 
-body.js-ready .animate-fade-right:not(.visible):not(.active),
-body.js-ready .scroll-reveal:not(.visible) .animate-fade-right {
+html.js-enabled .animate-fade-right:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-fade-right {
     opacity: 0;
     transform: translateX(-30px);
 }
 
-body.js-ready .animate-fade-left:not(.visible):not(.active),
-body.js-ready .scroll-reveal:not(.visible) .animate-fade-left,
-body.js-ready .animate-fade-left-buttons:not(.visible):not(.active),
-body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
+html.js-enabled .animate-fade-left:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left,
+html.js-enabled .animate-fade-left-buttons:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
     opacity: 0;
     transform: translateX(30px);
 }
@@ -370,7 +370,7 @@ body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
 .active.animate-fade-up,
 .active .animate-fade-up,
 .scroll-reveal.visible .animate-fade-up {
-    animation: animate-fade-up 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: animate-fade-up 3.0s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .visible.animate-fade-down,
@@ -378,7 +378,7 @@ body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
 .active.animate-fade-down,
 .active .animate-fade-down,
 .scroll-reveal.visible .animate-fade-down {
-    animation: animate-fade-down 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: animate-fade-down 3.0s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .visible.animate-fade-right,
@@ -386,7 +386,7 @@ body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
 .active.animate-fade-right,
 .active .animate-fade-right,
 .scroll-reveal.visible .animate-fade-right {
-    animation: animate-fade-right 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: animate-fade-right 3.0s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .visible.animate-fade-left,
@@ -399,7 +399,7 @@ body.js-ready .scroll-reveal:not(.visible) .animate-fade-left-buttons {
 .active.animate-fade-left-buttons,
 .active .animate-fade-left-buttons,
 .scroll-reveal.visible .animate-fade-left-buttons {
-    animation: animate-fade-left 2.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: animate-fade-left 3.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 @keyframes animate-fade-up {
