@@ -92,6 +92,10 @@ body {
     transform: translateY(0);
 }
 
+.navbar.navbar-darker {
+    background: rgba(0, 0, 0, 0.8) !important;
+}
+
 @keyframes slideDown {
     from {
         transform: translateY(-100%);
@@ -105,6 +109,21 @@ body {
 .navbar-brand img {
     height: 50px;
     width: auto;
+    transition: height 0.3s ease;
+}
+
+@media (max-width: 767px) {
+    .navbar-brand img {
+        height: 38px;
+    }
+
+    .navbar-brand span.mx-2 {
+        font-size: 18px !important;
+    }
+
+    .navbar-brand .h4 {
+        font-size: 1.1rem !important;
+    }
 }
 
 .nav-link {
@@ -251,6 +270,60 @@ body {
     .nav-item.dropdown {
         width: 100%;
     }
+}
+
+/* Team Section */
+.team-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-red);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.team-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #222;
+}
+
+.team-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.team-card:hover .team-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.team-info {
+    padding: 20px;
+}
+
+.team-info h5 {
+    color: var(--primary-white);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.team-info p {
+    color: var(--primary-red);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    font-weight: 500;
 }
 
 /* Hero Section */
@@ -484,41 +557,26 @@ html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
     transform: translateX(30px);
 }
 
-/* REVEAL TRIGGERS: Combined selectors (element itself OR descendant) */
+/* REVEAL TRIGGERS: Direct class-based activation for stability */
 .visible.animate-fade-up,
-.visible .animate-fade-up,
-.active.animate-fade-up,
-.active .animate-fade-up,
-.scroll-reveal.visible .animate-fade-up {
+.active.animate-fade-up {
     animation: animate-fade-up 3.0s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .visible.animate-fade-down,
-.visible .animate-fade-down,
-.active.animate-fade-down,
-.active .animate-fade-down,
-.scroll-reveal.visible .animate-fade-down {
+.active.animate-fade-down {
     animation: animate-fade-down 3.0s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .visible.animate-fade-right,
-.visible .animate-fade-right,
-.active.animate-fade-right,
-.active .animate-fade-right,
-.scroll-reveal.visible .animate-fade-right {
+.active.animate-fade-right {
     animation: animate-fade-right 3.0s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .visible.animate-fade-left,
-.visible .animate-fade-left,
 .active.animate-fade-left,
-.active .animate-fade-left,
-.scroll-reveal.visible .animate-fade-left,
 .visible.animate-fade-left-buttons,
-.visible .animate-fade-left-buttons,
-.active.animate-fade-left-buttons,
-.active .animate-fade-left-buttons,
-.scroll-reveal.visible .animate-fade-left-buttons {
+.active.animate-fade-left-buttons {
     animation: animate-fade-left 3.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
@@ -568,6 +626,27 @@ html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+@keyframes animate-slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-in-right {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+html.js-enabled .scroll-reveal.visible .animate-slide-in-right {
+    animation: animate-slide-in-right 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 @keyframes float {
@@ -1110,11 +1189,13 @@ footer a:hover {
     background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
     color: var(--primary-white);
     text-align: center;
-    margin-top: 120px;
-    /* Accounts for top-bar (40px) + navbar (approx 80px) */
-    padding: 80px 0 !important;
+    margin-top: 0;
+    padding: 160px 0 100px !important;
+    /* Increased top padding to clear navbar */
     position: relative;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
 }
 
 .page-header::before {
@@ -1124,8 +1205,13 @@ footer a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(227, 30, 36, 0.1) 0%, transparent 70%);
+    background: rgba(0, 0, 0, 0.6);
+    /* Dark overlay */
     z-index: 1;
+}
+
+.page-header.services-header::before {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
 }
 
 .page-header .container {
@@ -1135,15 +1221,15 @@ footer a:hover {
 
 @media (max-width: 991px) {
     .page-header {
-        margin-top: 100px;
-        padding: 60px 0 !important;
+        margin-top: 0;
+        padding: 120px 0 60px !important;
     }
 }
 
 @media (max-width: 576px) {
     .page-header {
-        margin-top: 80px;
-        padding: 50px 0 !important;
+        margin-top: 0;
+        padding: 100px 0 50px !important;
     }
 
     .page-header h1 {
@@ -2472,4 +2558,542 @@ body {
 
     /* Revert mobile hero height if it was changed globally, 
        but here we removed the static hero so this affects the slider section tops padding */
+}
+
+/* Modern IT Consultancy Section */
+.consultancy-modern {
+    background-color: #fffaf7 !important;
+    /* Light cream background */
+    color: var(--text-dark);
+}
+
+.consultancy-modern h2.section-title {
+    text-align: left !important;
+    margin-bottom: 25px;
+}
+
+.consultancy-modern h2.section-title::after {
+    left: 0;
+    transform: none;
+}
+
+.consultancy-modern .lead {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.btn-teal {
+    background-color: #00c4a7 !important;
+    color: white !important;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-teal:hover {
+    background-color: #00a88f !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 196, 167, 0.3);
+}
+
+/* Non-overlapping Collage with Luxury Dots */
+.collage-wrapper {
+    position: relative;
+    padding: 20px;
+}
+
+.dots-accent {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-image: radial-gradient(#d1d1d1 2px, transparent 2px);
+    background-size: 20px 20px;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.dots-top-left {
+    top: -10px;
+    left: -10px;
+}
+
+.dots-bottom-right {
+    bottom: -10px;
+    right: -10px;
+}
+
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 15px;
+    height: 450px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.collage-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.collage-item-1 {
+    grid-column: 1 / 7;
+    grid-row: 1 / 13;
+}
+
+.collage-item-2 {
+    grid-column: 7 / 13;
+    grid-row: 1 / 7;
+}
+
+.collage-item-3 {
+    grid-column: 7 / 13;
+    grid-row: 7 / 13;
+}
+
+@media (max-width: 768px) {
+    .collage-grid {
+        height: 300px;
+    }
+}
+
+/* Process Section in Modern Style */
+.process-modern-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    height: 100%;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.process-modern-card:hover {
+    border-color: #00c4a7;
+    transform: translateY(-5px);
+}
+
+/* Flat Process Cards matching Homepage Industries style */
+.process-flat-card {
+    background: transparent;
+    padding: 25px 20px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    height: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left !important;
+}
+
+.process-dark-theme .process-flat-card {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.process-flat-card:hover {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: var(--primary-red);
+    transform: translateY(-5px);
+}
+
+.process-dark-theme .process-flat-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.process-flat-card .process-num {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 20px;
+    color: var(--primary-red);
+    font-weight: 800;
+}
+
+.process-flat-card h5 {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    color: var(--primary-black);
+}
+
+.process-dark-theme .process-flat-card h5 {
+    color: white;
+}
+
+.process-flat-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666 !important;
+    margin-bottom: 0;
+}
+
+.process-dark-theme .process-flat-card p {
+    color: #ccc !important;
+}
+
+/* Dark Theme Section */
+.process-dark-theme {
+    background-color: #333333 !important;
+    color: white;
+    padding: 60px 0 !important;
+}
+
+.process-dark-theme .section-title {
+    color: white !important;
+}
+
+.process-dark-theme .section-title::after {
+    background-color: var(--primary-red) !important;
+}
+
+/* Mobile Development Section Redesign */
+.mobile-layout-section {
+    background: #ffffff;
+    padding: 80px 0;
+}
+
+.mobile-brand-box {
+    background: #111;
+    padding: 50px 40px;
+    border-radius: 25px;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-title-red {
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mobile-title-red::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-red);
+    border-radius: 2px;
+    transform: scaleX(0);
+    opacity: 0;
+    transform-origin: left;
+}
+
+.visible .mobile-title-red::after {
+    animation: underlineEntry 1s ease-out forwards, underlineFloatInfinite 3s ease-in-out infinite alternate 1s;
+}
+
+@keyframes underlineEntry {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+@keyframes underlineFloatInfinite {
+    from {
+        transform: scaleX(1) translateY(0);
+    }
+
+    to {
+        transform: scaleX(1) translateY(-5px);
+    }
+}
+
+.brand-box-content {
+    margin: 20px 0;
+}
+
+.mobile-brand-box .lead-text {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.mobile-brand-box .sub-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #cccccc;
+    font-weight: 300;
+    margin-bottom: 35px;
+}
+
+.mini-card-highlight {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 5px solid var(--primary-red);
+    margin-top: auto;
+}
+
+.mini-card-highlight h5 {
+    color: #111;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.mini-card-highlight p {
+    color: #666 !important;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.action-visual-container {
+    position: relative;
+    height: 100%;
+    min-height: 450px;
+}
+
+.action-visual-container img {
+    border-radius: 15px 45px 15px 15px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.action-play-trigger {
+    position: absolute;
+    bottom: -30px;
+    right: -20px;
+    width: 90px;
+    height: 90px;
+    background: var(--primary-red);
+    border: 8px solid white;
+    /* Thick white border from reference */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    cursor: default;
+    /* Non-clickable design element */
+    z-index: 10;
+    pointer-events: none;
+    /* Ensure it's not interactive */
+}
+
+.action-play-trigger i {
+    margin-left: 5px;
+    /* Adjust for play icon visual center */
+}
+
+@media (max-width: 991px) {
+    .mobile-layout-section {
+        padding: 50px 0;
+    }
+
+    .mobile-brand-box {
+        padding: 40px 25px;
+        margin-bottom: 40px;
+        border-radius: 20px;
+    }
+
+    .mobile-title-red {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .mobile-brand-box .lead-text {
+        font-size: 1.05rem;
+    }
+
+    .mobile-brand-box .sub-text {
+        font-size: 0.9rem;
+    }
+
+    .action-visual-container {
+        min-height: 300px;
+    }
+
+    .action-play-trigger {
+        width: 65px;
+        height: 65px;
+        bottom: -20px;
+        right: 0px;
+        font-size: 1.2rem;
+        border: 5px solid white;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-title-red {
+        font-size: 1.35rem;
+        letter-spacing: 0.5px;
+    }
+
+    .mobile-brand-box {
+        padding: 30px 20px;
+    }
+}
+
+/* Chatbot Section Redesign - Dark Theme */
+.chatbot-bg-section {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/Chatbot-1.jpg') center/cover no-repeat fixed;
+    padding: 100px 0 0 0;
+    /* Top spacing only, flush bottom */
+    overflow: hidden;
+}
+
+.chatbot-visual-left img {
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+}
+
+.chatbot-visual-left:hover img {
+    transform: translateY(-10px);
+}
+
+.chatbot-dark-card {
+    background: #333333;
+    padding: 80px 60px;
+    border-radius: 0;
+    color: white;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+.chatbot-dark-card .section-title {
+    color: white !important;
+    text-align: center !important;
+    margin-bottom: 20px;
+}
+
+.chatbot-dark-card .lead {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.chatbot-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.text-muted-custom {
+    color: #aaaaaa !important;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.chatbot-feature-item {
+    padding-left: 0;
+}
+
+.chatbot-feature-item h5 {
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.chatbot-feature-item p {
+    color: #cccccc !important;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .chatbot-bg-section {
+        padding: 60px 0;
+    }
+
+    .chatbot-visual-left {
+        margin-bottom: 50px;
+        padding: 0 20px;
+    }
+
+    .chatbot-dark-card {
+        padding: 50px 30px;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .chatbot-features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Business Highlight Styles */
+.business-highlight-card {
+    background: #222;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.business-highlight-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+}
+
+.business-highlight-card i {
+    font-size: 3rem;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+}
+
+.business-highlight-card h4 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.business-highlight-card p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 0;
 }
