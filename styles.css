@@ -2395,6 +2395,17 @@ footer a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
 .news-hub-body {
     padding: 25px;
 }
@@ -3257,4 +3268,207 @@ body {
 
 .partner-logo:hover {
     transform: scale(1.1);
+}
+
+/* About Page Redesign */
+.about-modern-title {
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.about-modern-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-red);
+    margin-top: 10px;
+}
+
+.about-lead-text {
+    font-size: 1.5rem;
+    color: #999;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.brand-image-shadow-box {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    display: inline-block;
+    max-width: 100%;
+}
+
+.info-card-minimal {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.03);
+    height: 100%;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.info-card-minimal:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+}
+
+.mission-item {
+    padding: 2rem;
+    color: var(--text-dark);
+}
+
+.mission-item h3 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-red) !important;
+}
+
+/* Stats Styling */
+.stats-bar-card {
+    background: #333333;
+    border-radius: 24px;
+    padding: 3rem;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.stat-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 2rem;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+/* Modern List for Why Choose Us */
+.expert-list-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.expert-icon-box {
+    width: 50px;
+    height: 50px;
+    background: rgba(51, 51, 51, 0.1);
+    color: #333333;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.25rem;
+}
+
+.expert-item-content h5 {
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.expert-item-content p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.satisfaction-badge-floating {
+    position: absolute;
+    bottom: 20px;
+    left: -40px;
+    background: #333333;
+    color: white;
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.satisfaction-badge-floating .val {
+    font-size: 2rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.satisfaction-badge-floating .txt {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+}
+
+/* Mobile Refinements for About Page */
+@media (max-width: 767px) {
+    .about-modern-title {
+        font-size: 1.8rem;
+    }
+
+    .about-lead-text {
+        font-size: 1.2rem;
+    }
+
+    .brand-image-shadow-box {
+        padding: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .mission-item {
+        padding: 1.5rem 1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .mission-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Remove bootstrap border utilities on mobile */
+    .mission-item.border-start,
+    .mission-item.border-end {
+        border-left: none !important;
+        border-right: none !important;
+    }
+
+    .stats-bar-card {
+        padding: 2rem 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .satisfaction-badge-floating {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        margin: 20px auto 0;
+        max-width: 200px;
+    }
+
+    .expert-list-item {
+        margin-bottom: 1.5rem;
+    }
 }

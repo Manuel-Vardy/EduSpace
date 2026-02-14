@@ -5,9 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>document.documentElement.classList.add('js-enabled');</script>
-    <title>Product Update - EduSpace</title>
+    <title>Company News - EduSpace</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/Asset 6 fav.png">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:title" content="Company News - EduSpace">
+    <meta property="og:description" content="Internal company updates, employee spotlights, and EduSpace culture.">
+    <meta property="og:image" content="images/Asset 6 fav.png">
+    <meta property="og:url" content="https://eduspace.tech/company-news.html">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Company News - EduSpace">
+    <meta name="twitter:description" content="Internal company updates, employee spotlights, and EduSpace culture.">
+    <meta name="twitter:image" content="images/Asset 6 fav.png">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +52,7 @@
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <img src="images/Asset 5.png" alt="EduSpace Logo" class="animate-float">
                 <span class="mx-2 text-white">|</span>
-                <span class="h4 mb-0 fw-bold text-white">News</span>
+                <span class="h4 mb-0 fw-bold text-white">Company</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <div class="custom-menu-icon">
@@ -51,8 +64,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" href="news.html">Our Stories</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="product-update.html">Product Update</a></li>
-                    <li class="nav-item"><a class="nav-link" href="company-news.html">The Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product-update.html">Product Update</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="company-news.html">Company News</a></li>
                     <li class="nav-item"><a class="nav-link" href="partnership.html">Partnership</a></li>
                 </ul>
             </div>
@@ -62,24 +75,21 @@
     <!-- News Slider Section -->
     <section class="news-slider-section py-5">
         <div class="container">
-            <div id="newsCarousel"
+            <div id="companyNewsCarousel"
                 class="carousel slide carousel-fade rounded-4 overflow-hidden shadow-lg animate-fade-up"
                 data-bs-ride="carousel" data-bs-pause="false">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="news-details.html" class="text-decoration-none">
-                            <div class="news-slide-item"
-                                style="background-image: url('images/smiling-architects-looking-blueprint.jpg');">
-                                <div class="news-slide-overlay">
-                                    <span class="badge bg-primary mb-2">Product Update</span>
-                                    <h2 class="display-5 fw-bold text-white mb-3">GEDP 3.0: Revolutionary EdTech
-                                        Integration</h2>
-                                    <p class="lead text-white-50 mb-4 d-none d-md-block">Experience the next generation
-                                        of education management with our latest GEDP update.</p>
-                                    <span class="btn btn-outline-light rounded-pill px-4">See What's New</span>
-                                </div>
+                        <div class="news-slide-item"
+                            style="background-image: url('images/startup-worker-using-ai-llm-chatbot-get-help-with-coding-tasks.jpg');">
+                            <div class="news-slide-overlay">
+                                <span class="badge bg-danger mb-2">Culture</span>
+                                <h2 class="display-5 fw-bold text-white mb-3">Our Office: Innovation and Collaboration
+                                </h2>
+                                <p class="lead text-white-50 mb-4 d-none d-md-block">A look inside the desks where
+                                    EduSpace's technology is built every day.</p>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,31 +99,49 @@
     <!-- News Grid Section -->
     <section class="news-grid-section py-5 bg-light">
         <div class="container">
-            <div class="latest-updates-title mb-5">
-                <h2 class="fw-bold mb-0" style="font-size: 2.5rem; letter-spacing: -1px;">Product <span
-                        class="text-danger">Updates</span></h2>
-                <div class="mt-2" style="width: 50px; height: 3px; background: var(--primary-red);"></div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-4">
+                <div class="latest-updates-title">
+                    <h2 class="fw-bold mb-0" style="font-size: 2.5rem; letter-spacing: -1px;">Company <span
+                            class="text-danger">News</span></h2>
+                    <div class="mt-2" style="width: 50px; height: 3px; background: var(--primary-red);"></div>
+                </div>
+                <div class="news-section-logo d-flex align-items-center">
+                    <img src="images/Asset 6.png" alt="EduSpace News" style="height: 35px;">
+                    <span class="mx-3" style="font-size: 24px; color: #ddd; font-weight: 300;">|</span>
+                    <span class="h5 mb-0 fw-bold text-dark">Internal</span>
+                </div>
             </div>
 
             <div class="row g-4 mb-5">
+                <!-- Company News Item 1 -->
                 <div class="col-md-6 col-lg-4 animate-fade-up">
-                    <a href="news-details.html" class="text-decoration-none text-dark">
-                        <div class="news-hub-card">
-                            <div class="news-hub-image">
-                                <img src="images/young-man-woman-sitting-cafe.jpg" alt="News Image">
-                                <span class="category-tag">Product Update</span>
-                            </div>
-                            <div class="news-hub-body">
-                                <div class="news-date">Feb 14, 2026</div>
-                                <h3 class="news-heading">mi-PAY Mobile App V2.5</h3>
-                                <p class="news-desc">We've added biometric authentication and instant receipt sharing to
-                                    the mi-PAY mobile app.</p>
-                                <span class="read-more-link">Read Article <i class="fas fa-arrow-right"></i></span>
-                            </div>
+                    <div class="news-hub-card">
+                        <div class="news-hub-image">
+                            <img src="images/women-seal-report.jpg" alt="Team Building">
+                            <span class="category-tag">Internal</span>
                         </div>
-                    </a>
+                        <div class="news-hub-body">
+                            <div class="news-date">Feb 10, 2026</div>
+                            <h3 class="news-heading">Team Building 2026 Highlights</h3>
+                            <p class="news-desc">An incredible weekend bonding and planning for the year ahead.</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- Add more product update items here -->
+
+                <!-- Company News Item 2 -->
+                <div class="col-md-6 col-lg-4 animate-fade-up" style="animation-delay: 0.1s;">
+                    <div class="news-hub-card">
+                        <div class="news-hub-image">
+                            <img src="images/african-american-worker.jpg" alt="New Hires">
+                            <span class="category-tag">Hiring</span>
+                        </div>
+                        <div class="news-hub-body">
+                            <div class="news-date">Jan 05, 2026</div>
+                            <h3 class="news-heading">Welcome Our Newest Engineers</h3>
+                            <p class="news-desc">We are expanding the team with four new frontend specialists.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -143,7 +171,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="./script.js"></script>
+    <script type="module" src="/script.js"></script>
 </body>
 
 </html>

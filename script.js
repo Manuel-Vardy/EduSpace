@@ -91,6 +91,41 @@ document.addEventListener('DOMContentLoaded', () => {
             bsCollapse.toggle();
         });
     }
+
+    // 5. Number Counter Animation for About Page Stats
+    const countElements = document.querySelectorAll('.stat-number[data-target]');
+
+    if (countElements.length > 0) {
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const targetValue = parseInt(target.getAttribute('data-target'));
+                    const duration = 2000;
+                    let startTime = null;
+
+                    const animate = (timestamp) => {
+                        if (!startTime) startTime = timestamp;
+                        const progress = Math.min((timestamp - startTime) / duration, 1);
+                        const currentCount = Math.floor(progress * targetValue);
+
+                        target.textContent = currentCount;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            target.textContent = targetValue;
+                        }
+                    };
+
+                    requestAnimationFrame(animate);
+                    countObserver.unobserve(target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        countElements.forEach(el => countObserver.observe(el));
+    }
 });
 
 
@@ -104,7 +139,7 @@ if (tickerContainer) {
     function scrollTicker() {
         if (!isPaused) {
             tickerContainer.scrollLeft += speed;
-            
+
             // Infinite Loop Logic: If scrolled past half (duplicate set starts), reset
             // Note: We assume the content is duplicated 50/50
             if (tickerContainer.scrollLeft >= tickerContainer.scrollWidth / 2) {
