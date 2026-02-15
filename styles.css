@@ -2,17 +2,35 @@
 
 :root {
     --primary-red: #E31E24;
-    --primary-black: #000000;
+    --primary-black: #333333;
     --primary-white: #FFFFFF;
     --text-dark: #333333;
     --text-light: #f8f9fa;
+}
+
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
     background-color: var(--primary-white);
-    overflow-x: hidden;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+@media (max-width: 991px) {
+    .section-padding {
+        padding: 60px 0;
+    }
 }
 
 /* Top Bar */
@@ -1094,22 +1112,54 @@ section {
 }
 
 /* Our Services Section - Decorative Curve */
-.services-highlight {
-    position: relative;
-    overflow: hidden;
+#services-section-bw {
+    position: relative !important;
+    background-image: url('./web-images/web5.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+    z-index: 1 !important;
 }
 
-.services-highlight::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(ellipse at top left, rgba(227, 30, 36, 0.15) 0%, rgba(227, 30, 36, 0.08) 40%, transparent 70%);
-    border-radius: 0 0 100% 0;
-    z-index: 0;
-    pointer-events: none;
+#services-section-bw::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    /* Increased from 0.4 to reduce visibility */
+    backdrop-filter: grayscale(100%) !important;
+    -webkit-backdrop-filter: grayscale(100%) !important;
+    z-index: -1 !important;
+}
+
+#services-section-bw .container {
+    position: relative !important;
+    z-index: 2 !important;
+}
+
+#services-section-bw i.fas {
+    filter: grayscale(100%) !important;
+    opacity: 0.9 !important;
+}
+
+/* Add lines between service sections */
+#services-section-bw .row>div:not(:last-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 991px) {
+    #services-section-bw .row>div {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    #services-section-bw .row>div:last-child {
+        border-bottom: none;
+    }
 }
 
 .btn-explore-sm:hover {
@@ -1186,7 +1236,7 @@ footer a:hover {
 
 /* Page Headers (Subpages) */
 .page-header {
-    background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+    background: linear-gradient(135deg, #333333 0%, #333333 100%);
     color: var(--primary-white);
     text-align: center;
     margin-top: 0;
@@ -1391,8 +1441,7 @@ footer a:hover {
 /* Goal/Vision Split Section */
 .goal-vision-split {
     padding: 0;
-    background: #f1f1f1;
-    /* Light ash background */
+    background: #333333;
 }
 
 .gv-content-col {
@@ -1422,11 +1471,10 @@ footer a:hover {
     width: 100%;
     /* Increased from 60% */
     height: 1px;
-    background: #ccc;
-    /* Ash color */
+    background: rgba(255, 255, 255, 0.1);
+    /* Subtle white divider */
     margin: 20px 0;
     /* Reduced from 40px */
-    opacity: 0.5;
 }
 
 .gv-title {
@@ -1497,7 +1545,7 @@ footer a:hover {
 .gv-text {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #555;
+    color: rgba(255, 255, 255, 0.8);
     max-width: 500px;
 }
 
@@ -1982,8 +2030,8 @@ footer a:hover {
     font-weight: 700;
     margin-bottom: 12px;
     line-height: 1.3;
-    color: #000000;
-    /* Black Heading */
+    color: #333333;
+    /* Reduced from pure black */
     transition: all 0.4s ease;
 }
 
@@ -2780,7 +2828,7 @@ body {
 }
 
 .mobile-brand-box {
-    background: #111;
+    background: #333333;
     padding: 50px 40px;
     border-radius: 25px;
     color: white;
@@ -3057,9 +3105,11 @@ body {
     }
 
     .chatbot-dark-card {
-        padding: 50px 30px;
-        margin-right: -15px;
-        margin-left: -15px;
+        padding: 50px 20px;
+        margin-right: 0;
+        margin-left: 0;
+        border-radius: 20px;
+        /* Give it some radius on mobile if it's no longer edge-to-edge */
     }
 
     .chatbot-features-grid {
@@ -3070,7 +3120,7 @@ body {
 
 /* Business Highlight Styles */
 .business-highlight-card {
-    background: #222;
+    background: #333333;
     padding: 30px;
     border-radius: 15px;
     text-align: center;
@@ -3273,7 +3323,7 @@ body {
 /* About Page Redesign */
 .about-modern-title {
     color: var(--primary-red);
-    font-weight: 600;
+    font-weight: 500;
     font-size: 2.5rem;
     letter-spacing: -1px;
     text-transform: uppercase;
@@ -3302,8 +3352,9 @@ body {
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
-    display: inline-block;
-    max-width: 100%;
+    display: block;
+    /* Changed from inline-block to block for better width handling */
+    width: 100%;
 }
 
 .info-card-minimal {
@@ -3327,7 +3378,7 @@ body {
 }
 
 .mission-item h3 {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
     color: var(--primary-red) !important;
@@ -3437,8 +3488,13 @@ body {
     }
 
     .mission-item {
-        padding: 1.5rem 1rem;
+        padding: 0.75rem 1rem;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .mission-item h3 {
+        margin-bottom: 0.75rem !important;
+        font-size: 1.5rem;
     }
 
     .mission-item:last-child {
@@ -3453,19 +3509,34 @@ body {
     }
 
     .stats-bar-card {
-        padding: 2rem 1rem;
+        padding: 2rem 0.5rem;
     }
 
     .stat-number {
-        font-size: 2.2rem;
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    .stat-divider {
+        height: 40px;
+        margin: 0 0.5rem;
+        display: block !important;
     }
 
     .satisfaction-badge-floating {
-        position: relative;
-        left: 0;
-        bottom: 0;
-        margin: 20px auto 0;
-        max-width: 200px;
+        position: absolute;
+        left: 20px;
+        bottom: -35px;
+        padding: 1rem;
+        max-width: 150px;
+        margin: 0;
+    }
+
+    .satisfaction-badge-floating .val {
+        font-size: 1.5rem;
     }
 
     .expert-list-item {
