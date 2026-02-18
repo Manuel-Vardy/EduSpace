@@ -3,6 +3,23 @@
 // Immediately add js-enabled class to ensure CSS hides elements before they are scrolled into view
 document.documentElement.classList.add('js-enabled');
 
+function hidePageLoader() {
+    const loader = document.getElementById('page-loader');
+    if (!loader || loader.classList.contains('is-hidden')) return;
+
+    loader.classList.add('is-hidden');
+    window.setTimeout(() => {
+        if (loader && loader.parentNode) {
+            loader.parentNode.removeChild(loader);
+        }
+    }, 450);
+}
+
+window.addEventListener('load', hidePageLoader);
+document.addEventListener('DOMContentLoaded', () => {
+    window.setTimeout(hidePageLoader, 6000);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Scroll Reveal Animation - Robust Version
     // Select any element that has 'scroll-reveal' class OR starts with 'animate-' OR has 'mobile-border-pulse'
