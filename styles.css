@@ -23,6 +23,13 @@ body {
     background-color: var(--primary-white);
 }
 
+p {
+    font-weight: 300 !important;
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 1.5rem;
+}
+
 .section-padding {
     padding: 100px 0;
 }
@@ -232,6 +239,12 @@ body {
     padding-left: 30px;
 }
 
+.dropdown-item:focus, .dropdown-item:active {
+    background-color: transparent;
+    color: var(--primary-white) !important;
+    outline: none;
+}
+
 /* Remove Bootstrap default arrow for clean look */
 .dropdown-toggle::after {
     display: none !important;
@@ -302,18 +315,16 @@ body {
     height: 100%;
 }
 
-.team-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--primary-red);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-}
+/* Hover effects removed as requested */
+/* .team-card:hover { ... } */
+
 
 .team-img-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     background: #222;
+    position: relative; /* Ensure overlay positions correctly */
 }
 
 .team-img-wrapper img {
@@ -323,25 +334,84 @@ body {
     transition: transform 0.5s ease;
 }
 
-.team-card:hover .team-img-wrapper img {
-    transform: scale(1.1);
-}
+/* Image zoom on hover removed as requested */
+/* .team-card:hover .team-img-wrapper img { transform: scale(1.1); } */
 
-.team-info {
+.team-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
     padding: 20px;
+    text-align: center;
+    z-index: 2;
+    pointer-events: none; /* Let clicks pass through to image/card if needed */
 }
 
-.team-info h5 {
+.team-overlay h5 {
     color: var(--primary-white);
     margin-bottom: 5px;
     font-weight: 700;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.team-info p {
-    color: var(--primary-red);
+.team-overlay p {
+    color: var(--primary-white);
     font-size: 0.9rem;
     margin-bottom: 0;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.team-info {
+    padding: 15px; /* Reduced padding since text is gone */
+}
+
+/* Remove old text styles since they are now in overlay */
+/* .team-info h5, .team-info p removed/overridden by overlay styles */
+
+.team-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 0; /* Adjusted */
+}
+
+.team-social .social-link {
+    color: rgba(255, 255, 255, 0.7); /* Brighter default */
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* Larger touch target */
+    height: 45px;
+    border-radius: 50%; /* Circle */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Thin border */
+    background: transparent;
+    text-decoration: none !important;
+}
+
+.team-social .social-link:hover {
+    color: var(--primary-red);
+    background: #fff;
+    border-color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.team-social .social-link .fab {
+    pointer-events: none;
+}
+
+/* Specific Brand Colors on Hover (Optional, or stick to White/Red) */
+/* Let's stick to the site theme (White/Red) for consistency, but slightly brighter */
+.team-social .social-link:hover {
+    color: var(--primary-red);
 }
 
 /* Hero Section */
@@ -1111,56 +1181,293 @@ section {
     color: #fff;
 }
 
-/* Our Services Section - Decorative Curve */
+/* New Geometric Services Section */
 #services-section-bw {
-    position: relative !important;
-    background-image: url('./web-images/web5.jpg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: scroll !important;
-    z-index: 1 !important;
+    background: #f8f9fa;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
 }
 
-#services-section-bw::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: rgba(255, 255, 255, 0.7) !important;
-    /* Increased from 0.4 to reduce visibility */
-    backdrop-filter: grayscale(100%) !important;
-    -webkit-backdrop-filter: grayscale(100%) !important;
-    z-index: -1 !important;
+.service-icon-box {
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-#services-section-bw .container {
-    position: relative !important;
-    z-index: 2 !important;
+.service-icon-box:hover {
+    background: var(--primary-red);
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(227, 30, 36, 0.3);
 }
 
-#services-section-bw i.fas {
-    filter: grayscale(100%) !important;
-    opacity: 0.9 !important;
+.service-icon-box i {
+    transition: all 0.3s ease;
 }
 
-/* Add lines between service sections */
-#services-section-bw .row>div:not(:last-child) {
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
+.service-icon-box:hover i {
+    color: #fff !important;
+}
+
+/* Geometric Image Wrapper */
+.geometric-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 450px;
+    height: 450px;
+    overflow: visible;
+}
+
+.geometric-wrapper::before,
+.geometric-wrapper::after {
+    content: "";
+    position: absolute;
+    transform: rotate(45deg);
+    border-radius: 18px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.geometric-wrapper::before {
+    width: 400px;
+    height: 400px;
+    top: -20px;
+    right: -30px;
+    border: 2px solid rgba(0, 0, 0, 0.18);
+    background: transparent;
+    box-shadow:
+        -160px 170px 0 -120px rgba(0, 0, 0, 0.08),
+        180px 190px 0 -135px rgba(227, 30, 36, 0.14);
+}
+
+.geometric-wrapper::after {
+    width: 320px;
+    height: 320px;
+    bottom: -30px;
+    left: -20px;
+    border: 2px solid rgba(227, 30, 36, 0.28);
+    background: rgba(227, 30, 36, 0.08);
+    box-shadow:
+        170px -160px 0 -120px rgba(0, 0, 0, 0.06),
+        -190px -180px 0 -130px rgba(227, 30, 36, 0.10);
+}
+
+.diamond-grid-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: rotate(45deg);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    z-index: 2;
+}
+
+.diamond-cell {
+    width: calc(50% - 7.5px);
+    height: calc(50% - 7.5px);
+    overflow: hidden;
+    position: relative;
+    border-radius: 15px;
+    background: #f0f0f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+}
+
+.diamond-cell img {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    transform: rotate(-45deg);
+    transform-origin: center center;
+    transition: all 0.5s ease;
+}
+
+/* 
+   Image Positioning Logic:
+   The container is 450x450 (roughly).
+   Inside, the grid is rotated 45deg.
+   We want the image to be upright, so we rotate it -45deg.
+   We want the image to look like one cohesive picture across the 4 cells.
+   
+   The image is sized to 300% of the cell to cover the bounding box of the rotated grid.
+   Cell width C ~ 215px. 300% C ~ 645px.
+   Grid Diagonal ~ 636px.
+   So 300% is sufficient to cover the corners.
+   
+   Centering Logic:
+   Grid Center (GC) is at (C + Gap/2, C + Gap/2) relative to Grid Top-Left.
+   Relative to Cell Origins:
+   TL (0,0): GC is at (C + 7.5px, C + 7.5px).
+   TR (C+15, 0): GC is at (-7.5px, C + 7.5px).
+   BL (0, C+15): GC is at (C + 7.5px, -7.5px).
+   BR (C+15, C+15): GC is at (-7.5px, -7.5px).
+   
+   Image Center (IC) is at (150%, 150%).
+   We want IC == GC.
+   
+   TL Left: (C + 7.5px) - 1.5C = -0.5C + 7.5px -> calc(-50% + 7.5px)
+   TR Left: (-7.5px) - 1.5C = -1.5C - 7.5px -> calc(-150% - 7.5px)
+   ... and so on.
+*/
+
+.cell-tl img {
+    left: calc(-50% + 7.5px);
+    top: calc(-50% + 7.5px);
+}
+
+.cell-tr img {
+    left: calc(-150% - 7.5px);
+    top: calc(-50% + 7.5px);
+}
+
+.cell-bl img {
+    left: calc(-50% + 7.5px);
+    top: calc(-150% - 7.5px);
+}
+
+.cell-br img {
+    left: calc(-150% - 7.5px);
+    top: calc(-150% - 7.5px);
+}
+
+/* Hover Effect */
+.diamond-grid-container:hover .diamond-cell {
+    transform: scale(0.98);
+}
+
+.diamond-grid-container:hover .diamond-cell {
+    filter: brightness(0.98);
+}
+
+/* Experience Badge - Arrow Style */
+.experience-badge-arrow {
+    position: absolute;
+    bottom: 50px;
+    left: -40px;
+    z-index: 20;
+    display: flex;
+    align-items: stretch;
+}
+
+.arrow-shape {
+    background: #333333;
+    color: white;
+    padding: 15px 30px 15px 40px;
+    position: relative;
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+    width: 170px;
+    z-index: 2;
+    text-align: left;
+}
+
+.arrow-shape .h3 {
+    line-height: 1;
+}
+
+.arrow-shape .small {
+    line-height: 1.1;
+    letter-spacing: 0.6px !important;
+}
+
+.arrow-tail {
+    width: 52px;
+    height: auto;
+    min-height: 0;
+    align-self: stretch;
+    background: var(--primary-red);
+    clip-path: polygon(0 0, 68% 0, 100% 50%, 68% 100%, 0 100%, 32% 50%);
+    margin-left: -22px;
 }
 
 @media (max-width: 991px) {
-    #services-section-bw .row>div {
-        border-right: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    .geometric-wrapper {
+        width: 350px;
+        height: 350px;
+        margin-top: 50px;
     }
 
-    #services-section-bw .row>div:last-child {
-        border-bottom: none;
+    .experience-badge-arrow {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -30px;
     }
 }
+
+@media (max-width: 575.98px) {
+    .geometric-wrapper {
+        width: 240px;
+        height: 240px;
+        margin-top: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .geometric-wrapper::before {
+        width: 230px;
+        height: 230px;
+        top: -14px;
+        right: -14px;
+    }
+
+    .geometric-wrapper::after {
+        width: 200px;
+        height: 200px;
+        bottom: -14px;
+        left: -14px;
+    }
+
+    .diamond-grid-container {
+        gap: 10px;
+    }
+
+    .diamond-cell {
+        border-radius: 12px;
+    }
+
+    .experience-badge-arrow {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        transform: none;
+        margin-top: 16px;
+        justify-content: center;
+    }
+
+    .arrow-shape {
+        width: 120px;
+        height: auto;
+        padding: 8px 14px 8px 20px;
+    }
+
+    .arrow-tail {
+        width: 35px;
+        height: auto;
+        min-height: 0;
+        margin-left: -12px;
+    }
+
+    .experience-badge-arrow .h3 {
+        font-size: 1rem;
+    }
+
+    .experience-badge-arrow .small {
+        font-size: 0.6rem;
+    }
+}
+
 
 .btn-explore-sm:hover {
     background: var(--primary-red);
@@ -1315,8 +1622,8 @@ footer a:hover {
     position: absolute;
     top: -20px;
     right: 10%;
-    background: #008080;
-    /* Teal/Green from image */
+    background: #333333;
+    /* Dark grey */
     color: white;
     padding: 15px 25px;
     border-radius: 15px;
@@ -1491,30 +1798,20 @@ footer a:hover {
     position: relative;
 }
 
-/* Sparkle Marker Style */
-.gv-marker {
-    width: 20px;
-    height: 20px;
+.gv-check-icon {
+    width: 30px;
+    height: 30px;
     background-color: var(--primary-red);
-    clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
-    animation: twinkle 3s infinite ease-in-out;
-    display: inline-block;
+    color: var(--primary-white);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
     flex-shrink: 0;
 }
 
-@keyframes twinkle {
 
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.8;
-    }
-
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-    }
-}
 
 
 
@@ -3355,6 +3652,19 @@ body {
     display: block;
     /* Changed from inline-block to block for better width handling */
     width: 100%;
+}
+
+.story-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
+    .story-image {
+        height: 100%;
+        min-height: 100%;
+    }
 }
 
 .info-card-minimal {
