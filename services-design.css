@@ -1,0 +1,333 @@
+/* Services Page Dedicated Design (Anosta-Inspired) */
+
+/* Hero Section Split Layout */
+.services-hero-split {
+    padding-top: 150px;
+}
+
+.hero-text-block {
+    padding-bottom: 50px;
+}
+
+.hero-stats-box {
+    background: #0D1117;
+    /* Deep Navy/Black */
+    color: white;
+    padding: 40px;
+    border-radius: 4px;
+    /* Sharp corners */
+    position: relative;
+    height: 100%;
+}
+
+.hero-stats-box h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+}
+
+.hero-stats-box p {
+    color: #999;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-main-image-wrapper {
+    margin-top: -60px;
+    /* Overlap effect */
+    border-radius: 4px;
+    overflow: hidden;
+    height: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-main-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Services 4-Card Grid */
+.anosta-services-grid {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.service-card-sharp {
+    border: 1px solid #eee;
+    padding: 40px;
+    height: 100%;
+    transition: all 0.3s ease;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card-sharp:hover {
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.service-card-sharp .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 25px;
+    color: var(--primary-red);
+    font-size: 2.5rem;
+}
+
+.service-card-sharp h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.service-card-sharp p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+.explore-link {
+    margin-top: auto;
+    color: var(--primary-red);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Journey/Process Split Section */
+.journey-split-section {
+    padding: 100px 0;
+    background: #F8F9FA;
+}
+
+.journey-image-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.journey-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.journey-badge {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    background: var(--primary-red);
+    color: white;
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(227, 30, 36, 0.3);
+}
+
+.journey-content {
+    padding-left: 50px;
+}
+
+.journey-content h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.custom-bullet-list {
+    list-style: none;
+    padding: 0;
+}
+
+.custom-bullet-list li {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.custom-bullet-list li i {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--primary-red);
+}
+
+/* Stats Ribbon Section */
+.stats-ribbon {
+    background: #fff;
+    padding: 80px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.stat-item-minimal h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.stat-item-minimal p {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
+
+/* Decorative Section Icons */
+.section-decorative-icon {
+    position: absolute;
+    top: -120px;
+    left: -20px;
+    font-size: 30rem;
+    color: rgba(31, 25, 25, 0.05);
+    /* Extremely subtle red */
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(-15deg);
+}
+
+.subtle-app-icon {
+    left: -100px !important;
+    top: -100px !important;
+    font-size: 35rem !important;
+}
+
+.section-decorative-icon-right {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    font-size: 30rem;
+    color: rgba(255, 255, 255, 0.03);
+    /* Subtle white for dark bg */
+    z-index: 0;
+    pointer-events: none;
+    transform: rotate(15deg);
+}
+
+.image-text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.image-text-overlay:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.image-text-overlay h2 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+}
+
+/* Mobile Development Section Collage */
+.mobile-dev-collage {
+    position: relative;
+    overflow: visible !important;
+    height: auto !important;
+}
+
+.image-badge-overlay {
+    position: absolute;
+    bottom: -20px;
+    /* Reduced overlap to stay closer to image but pop out */
+    right: -20px;
+    width: 220px;
+    z-index: 5;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 991px) {
+    .subtle-app-icon {
+        font-size: 15rem !important;
+        /* Reduced size */
+        top: 80px !important;
+        /* Adjusted for section level positioning */
+        left: -10px !important;
+        transform: rotate(-10deg) !important;
+    }
+
+    .image-badge-overlay {
+        width: 140px;
+        right: 10px;
+        /* Keep on right for consistency */
+        left: auto;
+        bottom: 10px;
+        border-width: 2px;
+        border-radius: 15px;
+    }
+}
+
+/* Responsive Tweaks */
+@media (max-width: 991px) {
+    .image-text-overlay h2 {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .hero-text-block {
+        padding-bottom: 20px;
+    }
+
+    .hero-text-block h1 {
+        font-size: 2.2rem;
+        /* Adjusted for better mobile fit */
+        margin-top: 0;
+        margin-bottom: 10px !important;
+        /* Tighten space to span above */
+    }
+
+    .hero-text-block span {
+        margin-bottom: 5px !important;
+        /* Tighten space to h1 below */
+    }
+
+    .hero-text-block .lead {
+        font-size: 1.05rem;
+        margin-top: 10px;
+        line-height: 1.5;
+    }
+
+    .hero-stats-box {
+        margin-top: 30px;
+    }
+
+    .hero-main-image-wrapper {
+        margin-top: 20px;
+        height: 350px;
+    }
+
+    .journey-content {
+        padding-left: 0;
+        margin-top: 50px;
+    }
+
+    .journey-content h2 {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-top: 10px;
+        line-height: 1.2;
+    }
+
+    .journey-badge {
+        right: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+}
