@@ -90,7 +90,7 @@ p {
 
 /* Top Bar */
 .top-bar {
-    background-color: var(--primary-red);
+    background-color: #8A1111;
     color: var(--primary-white);
     position: absolute;
     height: 40px;
@@ -287,7 +287,8 @@ p {
     padding-left: 30px;
 }
 
-.dropdown-item:focus, .dropdown-item:active {
+.dropdown-item:focus,
+.dropdown-item:active {
     background-color: transparent;
     color: var(--primary-white) !important;
     outline: none;
@@ -372,7 +373,8 @@ p {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     background: #222;
-    position: relative; /* Ensure overlay positions correctly */
+    position: relative;
+    /* Ensure overlay positions correctly */
 }
 
 .team-img-wrapper img {
@@ -394,7 +396,8 @@ p {
     padding: 20px;
     text-align: center;
     z-index: 2;
-    pointer-events: none; /* Let clicks pass through to image/card if needed */
+    pointer-events: none;
+    /* Let clicks pass through to image/card if needed */
 }
 
 .team-overlay h5 {
@@ -402,7 +405,7 @@ p {
     margin-bottom: 5px;
     font-weight: 700;
     font-size: 1.1rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .team-overlay p {
@@ -416,7 +419,8 @@ p {
 }
 
 .team-info {
-    padding: 15px; /* Reduced padding since text is gone */
+    padding: 15px;
+    /* Reduced padding since text is gone */
 }
 
 /* Remove old text styles since they are now in overlay */
@@ -426,20 +430,25 @@ p {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 0; /* Adjusted */
+    margin-top: 0;
+    /* Adjusted */
 }
 
 .team-social .social-link {
-    color: rgba(255, 255, 255, 0.7); /* Brighter default */
+    color: rgba(255, 255, 255, 0.7);
+    /* Brighter default */
     font-size: 1.2rem;
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 45px; /* Larger touch target */
+    width: 45px;
+    /* Larger touch target */
     height: 45px;
-    border-radius: 50%; /* Circle */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Thin border */
+    border-radius: 50%;
+    /* Circle */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Thin border */
     background: transparent;
     text-decoration: none !important;
 }
@@ -449,7 +458,7 @@ p {
     background: #fff;
     border-color: #fff;
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .team-social .social-link .fab {
@@ -783,6 +792,39 @@ html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
 
 html.js-enabled .scroll-reveal.visible .animate-slide-in-right {
     animation: animate-slide-in-right 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.animate-diamond-entrance {
+    opacity: 1;
+    will-change: transform, opacity;
+}
+
+html.js-enabled .animate-diamond-entrance:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-diamond-entrance {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+}
+
+.visible.animate-diamond-entrance,
+.active.animate-diamond-entrance {
+    animation: animate-diamond-entrance 1.4s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+@keyframes animate-diamond-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(0) scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes float {
@@ -1247,7 +1289,7 @@ section {
     justify-content: center;
     font-size: 1.5rem;
     transition: all 0.3s ease;
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .service-icon-box:hover {
@@ -1940,6 +1982,32 @@ footer a:hover {
     }
 }
 
+/* Rolling Mat Entrance Animation */
+@keyframes roll-in {
+    0% {
+        opacity: 0;
+        transform: perspective(600px) rotateX(90deg) translateY(-50px);
+        transform-origin: top;
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(600px) rotateX(0deg) translateY(0);
+        transform-origin: top;
+    }
+}
+
+.animate-roll-in {
+    opacity: 0;
+    /* Starts hidden until animation triggers */
+    transform-origin: top;
+}
+
+.visible .animate-roll-in,
+.animate-roll-in.visible {
+    animation: roll-in 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
 /* Mobile Responsiveness (Moved to bottom for cascade) */
 @media (max-width: 991px) {
     .navbar-collapse {
@@ -2157,8 +2225,6 @@ footer a:hover {
     background-image: url('images/male-shaking-hands.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    /* Parallax effect */
     padding: 100px 0;
     position: relative;
     z-index: 1;
@@ -2168,6 +2234,7 @@ footer a:hover {
     color: var(--primary-white);
     /* White text for contrast on dark overlay */
     margin-bottom: 30px;
+    text-align: left;
     position: relative;
     z-index: 2;
 }
@@ -2204,13 +2271,96 @@ footer a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    /* Semi-transparent Dark Overlay */
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.98) 0%,
+            rgba(0, 0, 0, 0.90) 45%,
+            rgba(0, 0, 0, 0.75) 100%);
     backdrop-filter: blur(5px);
     /* Glass effect */
     -webkit-backdrop-filter: blur(5px);
     z-index: -1;
     /* Behind content */
+}
+
+.trust-section__intro {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to right, rgba(20, 20, 20, 0.95) 0%, rgba(20, 20, 20, 0.7) 60%, transparent 100%);
+    padding: 40px;
+    border-radius: 12px;
+    margin-left: -40px;
+    /* Offset to align visually with the grid edge */
+}
+
+.trust-section__lead {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.trust-section__points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.trust-section__point {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.trust-section__point i {
+    margin-top: 5px;
+    color: var(--primary-red);
+    font-size: 1.1rem;
+}
+
+.trust-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.trust-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.trust-feature:nth-child(1),
+.trust-feature:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.trust-feature__icon {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    color: #E31E24;
+    font-size: 2.8rem;
+    padding-top: 5px;
+}
+
+.trust-feature__content h4 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+
+.trust-feature__content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .trust-flow-container {
@@ -2436,26 +2586,21 @@ footer a:hover {
 
 /* Tablet and Mobile Adjustments for Trust Section */
 @media (max-width: 991px) {
-    .trust-section .container.text-center {
-        text-align: left !important;
-        margin-bottom: 30px !important;
-    }
-
-    .trust-section .section-title {
-        text-align: left;
+    .trust-section {
+        padding: 80px 0;
     }
 
     .trust-section .section-title::after {
-        left: 0;
-        transform: none;
         animation: underlineOscillateMobile 6s ease-in-out infinite;
     }
 
-    .trust-flow-container {
-        flex-wrap: wrap;
-        max-width: 800px;
-        margin: 0 auto;
-        overflow: visible;
+    .trust-section__intro {
+        margin-bottom: 20px;
+    }
+
+    .trust-features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 26px;
     }
 }
 
@@ -2519,9 +2664,23 @@ footer a:hover {
 
 /* Mobile Specific (1 Column) */
 @media (max-width: 767px) {
-    .trust-flow-container {
-        flex-direction: column;
-        max-width: 500px;
+    .trust-features-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .trust-section__lead {
+        font-size: 1rem;
+    }
+
+    .trust-feature {
+        padding: 20px 0;
+        margin-bottom: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .trust-feature:last-child {
+        border-bottom: none !important;
     }
 
     .trust-segment {
@@ -2570,6 +2729,41 @@ footer a:hover {
     }
 }
 
+
+/* Our Products Section Background Design */
+.home-products-section {
+    position: relative;
+    background-color: #f8fafc;
+    /* Very light slate background */
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Dotted geometric pattern */
+.home-products-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#e1e1e1 2px, transparent 2px);
+    background-size: 40px 40px;
+    z-index: -1;
+}
+
+/* Soft red gradient glow in the corner */
+.home-products-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(227, 30, 36, 0.15) 0%, rgba(227, 30, 36, 0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
 
 /* Partners Section Styles */
 .partners-section {
@@ -3735,6 +3929,30 @@ body {
     color: var(--text-dark);
 }
 
+.about-page .mvg-section {
+    background: #333333;
+    margin-top: 40px;
+}
+
+.about-page .mvg-section .about-modern-title {
+    color: #ffffff;
+}
+
+.about-page .mvg-section .mission-item {
+    color: #ffffff;
+}
+
+.about-page .mvg-section .mission-item p,
+.about-page .mvg-section .mission-item .text-muted {
+    color: rgba(255, 255, 255, 0.72) !important;
+}
+
+.about-page .mvg-section .mission-item.border-start,
+.about-page .mvg-section .mission-item.border-end {
+    border-left: none !important;
+    border-right: none !important;
+}
+
 .mission-item h3 {
     font-weight: 500;
     font-size: 1.8rem;
@@ -3751,11 +3969,19 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+.about-page .stats-bar-card {
+    background: #8A1111;
+}
+
 .stat-divider {
     width: 1px;
     height: 60px;
     background: rgba(255, 255, 255, 0.2);
     margin: 0 2rem;
+}
+
+.about-page .stat-divider {
+    display: none !important;
 }
 
 .stat-number {
@@ -3834,6 +4060,10 @@ body {
 @media (max-width: 767px) {
     .about-modern-title {
         font-size: 1.8rem;
+    }
+
+    .about-page .mvg-section {
+        margin-top: 24px;
     }
 
     .about-lead-text {
