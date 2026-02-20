@@ -667,7 +667,9 @@ p {
 .animate-fade-down,
 .animate-fade-right,
 .animate-fade-left,
-.animate-fade-left-buttons {
+.animate-fade-left-buttons,
+.animate-roll-in,
+.animate-mat-roll {
     opacity: 1;
     /* FAIL-SAFE: Content is visible if JS fails */
     will-change: transform, opacity;
@@ -702,6 +704,33 @@ html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
     transform: translateX(30px);
 }
 
+html.js-enabled .animate-roll-in:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-roll-in {
+    opacity: 0;
+    transform: translate(-400px, 0) rotate(-30deg);
+}
+
+html.js-enabled .animate-mat-roll:not(.visible):not(.active),
+html.js-enabled .scroll-reveal:not(.visible) .animate-mat-roll {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-90deg);
+    transform-origin: left;
+}
+
+/* Mobile Animation Adjustments */
+@media (max-width: 991px) {
+
+    html.js-enabled .animate-roll-in:not(.visible):not(.active),
+    html.js-enabled .scroll-reveal:not(.visible) .animate-roll-in {
+        transform: translate(-100px, 0) rotate(-15deg);
+    }
+
+    html.js-enabled .animate-mat-roll:not(.visible):not(.active),
+    html.js-enabled .scroll-reveal:not(.visible) .animate-mat-roll {
+        transform: perspective(1000px) rotateY(-45deg);
+    }
+}
+
 /* REVEAL TRIGGERS: Direct class-based activation for stability */
 .visible.animate-fade-up,
 .active.animate-fade-up {
@@ -723,6 +752,16 @@ html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
 .visible.animate-fade-left-buttons,
 .active.animate-fade-left-buttons {
     animation: animate-fade-left 3.5s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.visible.animate-roll-in,
+.active.animate-roll-in {
+    animation: animate-roll-in 2.5s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+
+.visible.animate-mat-roll,
+.active.animate-mat-roll {
+    animation: animate-mat-roll 2s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
 
 @keyframes animate-fade-up {
@@ -770,6 +809,30 @@ html.js-enabled .scroll-reveal:not(.visible) .animate-fade-left-buttons {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes animate-roll-in {
+    from {
+        opacity: 0;
+        transform: translate(-400px, 0) rotate(-30deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes animate-mat-roll {
+    from {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(-90deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(0deg);
     }
 }
 
