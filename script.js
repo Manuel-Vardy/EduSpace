@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         root: null,
-        threshold: 0.1, // Reduced threshold for better sensitivity
-        rootMargin: "0px" // Trigger immediately when it enters viewport
+        threshold: 0.2, // Increased threshold to delay trigger until more of the element is visible
+        rootMargin: "-50px 0px" // Trigger slightly after entering viewport
     });
 
     revealElements.forEach(el => revealObserver.observe(el));

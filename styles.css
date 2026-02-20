@@ -1126,12 +1126,11 @@ section {
 .testimonial-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 40px;
-    border-radius: 15px;
+    padding: 30px;
+    border-radius: 12px;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     transition: all 0.4s ease;
     user-select: none;
     -webkit-user-select: none;
@@ -1140,50 +1139,102 @@ section {
 
 .testimonial-card:hover {
     background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     border-color: var(--primary-red);
 }
 
-.testimonial-stars {
-    color: #FFD700;
-    /* Gold Stars */
-    margin-bottom: 25px;
-    font-size: 0.9rem;
-}
-
-.testimonial-quote {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #e0e0e0;
-    font-style: italic;
-    margin-bottom: 30px;
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .testimonial-author {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    padding: 5px;
+    /* Space for the arc border */
+}
+
+/* Decorative Arc Border */
+.avatar-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    /* Incomplete circle effect */
+    clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%, 0 60%, 100% 60%, 100% 100%, 0 100%);
+    pointer-events: none;
 }
 
 .testimonial-avatar {
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--primary-red);
+    display: block;
+}
+
+.author-info {
+    text-align: left;
 }
 
 .author-info h4 {
-    color: var(--primary-red);
-    font-size: 1.2rem;
+    color: var(--primary-white);
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .author-info p {
-    color: #aaaaaa;
-    font-size: 0.85rem;
+    color: var(--primary-white);
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+    text-transform: none;
+    letter-spacing: 0;
+    opacity: 0.7;
+    /* Slightly dimmed for hierarchy */
+}
+
+.testimonial-stars {
+    color: #FFD700;
+    /* Yellow stars */
+    font-size: 0.75rem;
+    display: flex;
+    gap: 2px;
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--primary-white);
+    /* White quote icon */
+    opacity: 0.2;
+    line-height: 1;
+}
+
+.testimonial-divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 0 20px 0;
+}
+
+.testimonial-quote {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: normal;
     margin: 0;
+    text-align: left;
 }
 
 /* Align heading and underline to the left for Testimonials */
@@ -1210,19 +1261,18 @@ section {
     }
 
     .testimonial-card-wrap {
-        width: 300px;
-        /* Reduced width on mobile */
+        width: 85vw;
+        max-width: 450px;
     }
 
     .testimonial-card {
-        padding: 25px;
-        /* Reduced padding to "shrink" height */
+        padding: 20px 25px;
     }
 
     .testimonial-quote {
         font-size: 0.95rem;
         /* Smaller font for height reduction */
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         line-height: 1.6;
     }
 
@@ -1274,9 +1324,40 @@ section {
 /* New Geometric Services Section */
 #services-section-bw {
     background: #f8f9fa;
-    overflow: visible;
+    overflow: hidden;
+    /* Changed from visible to contain background decor */
     position: relative;
     z-index: 1;
+}
+
+.services-bg-decor {
+    position: absolute;
+    top: -8%;
+    left: -8%;
+    width: 450px;
+    height: 450px;
+    opacity: 0.04;
+    /* Very subtle watermark */
+    pointer-events: none;
+    z-index: -1;
+    transform: rotate(-15deg);
+    color: var(--primary-red);
+    /* Using theme color for the SVG lines */
+}
+
+.services-bg-decor img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 991px) {
+    .services-bg-decor {
+        width: 250px;
+        height: 250px;
+        left: -8%;
+        top: -2%;
+    }
 }
 
 .service-icon-box {
@@ -2006,6 +2087,32 @@ footer a:hover {
 .visible .animate-roll-in,
 .animate-roll-in.visible {
     animation: roll-in 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Rolling In from Left Animation */
+@keyframes roll-in-left {
+    0% {
+        opacity: 0;
+        transform: perspective(1000px) rotateY(-90deg) translateX(-100px);
+        transform-origin: left;
+    }
+
+    100% {
+        opacity: 1;
+        transform: perspective(1000px) rotateY(0deg) translateX(0);
+        transform-origin: left;
+    }
+}
+
+.animate-roll-in-left {
+    opacity: 0;
+    /* Starts hidden until animation triggers */
+    transform-origin: left;
+}
+
+.visible .animate-roll-in-left,
+.animate-roll-in-left.visible {
+    animation: roll-in-left 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
 /* Mobile Responsiveness (Moved to bottom for cascade) */
@@ -4063,7 +4170,7 @@ body {
     }
 
     .about-page .mvg-section {
-        margin-top: 24px;
+        margin-top: 40px;
     }
 
     .about-lead-text {
@@ -4071,8 +4178,16 @@ body {
     }
 
     .brand-image-shadow-box {
-        padding: 1.5rem;
+        padding: 0 !important;
         margin-top: 2rem;
+        height: auto !important;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .story-image {
+        height: 250px !important;
+        border-radius: 20px;
     }
 
     .mission-item {
@@ -4097,21 +4212,23 @@ body {
     }
 
     .stats-bar-card {
-        padding: 2rem 0.5rem;
+        padding: 1.5rem 0.5rem;
     }
 
     .stat-number {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     .stat-label {
         font-size: 0.65rem;
+        letter-spacing: 0.5px;
     }
 
     .stat-divider {
-        height: 40px;
-        margin: 0 0.5rem;
+        height: 30px;
+        margin: 0 0.25rem;
         display: block !important;
+        opacity: 0.3;
     }
 
     .satisfaction-badge-floating {
