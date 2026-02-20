@@ -1248,16 +1248,9 @@ section {
     transform: translateX(0);
 }
 
-/* Mobile Refinements for Testimonials */
 @media (max-width: 767px) {
     .testimonials-section .text-center {
         margin-bottom: 1.5rem !important;
-        /* Reduced from mb-5 (3rem) */
-    }
-
-    .testimonials-ticker-container {
-        padding: 15px 0;
-        /* Reduced vertical padding */
     }
 
     .testimonial-card-wrap {
@@ -1266,14 +1259,20 @@ section {
     }
 
     .testimonial-card {
-        padding: 20px 25px;
+        padding: 20px;
     }
 
-    .testimonial-quote {
-        font-size: 0.95rem;
-        /* Smaller font for height reduction */
+    .testimonial-header {
         margin-bottom: 15px;
-        line-height: 1.6;
+        gap: 10px;
+    }
+
+    .testimonial-author {
+        gap: 10px;
+    }
+
+    .avatar-wrapper {
+        padding: 3px;
     }
 
     .testimonial-avatar {
@@ -1282,7 +1281,29 @@ section {
     }
 
     .author-info h4 {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.2;
+    }
+
+    .author-info p {
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+    }
+
+    .testimonial-stars {
+        font-size: 0.65rem;
+    }
+
+    .quote-icon {
+        font-size: 1.5rem;
+    }
+
+    .testimonial-divider {
+        margin-bottom: 15px;
+    }
+
+    .testimonial-quote {
+        font-size: 0.85rem;
     }
 }
 
@@ -2230,6 +2251,11 @@ footer a:hover {
     .solutions-left {
         margin-top: 60px;
         /* Bring images down in mobile */
+    }
+
+    .dots-pattern {
+        bottom: 20px;
+        left: -20px;
     }
 
     .solution-item {
