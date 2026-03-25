@@ -2269,15 +2269,16 @@ footer a:hover {
     }
 
     .hero-content {
-        padding-left: 5%;
-        padding-bottom: 50px;
+        padding-left: 7%;
+        padding-right: 7%;
+        padding-bottom: 60px;
         text-align: left;
-        padding-right: 5%;
     }
 
     .hero {
         align-items: flex-end;
-        padding-bottom: 40px;
+        padding-bottom: 60px;
+        /* Increased for more breathing room */
     }
 
     .hero {
@@ -2414,25 +2415,65 @@ footer a:hover {
         /* Reduced from 600px */
     }
 
-    .gv-item {
-        margin-bottom: 15px;
+    .gv-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    .gv-text {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
     }
 
     .gv-divider {
-        margin: 15px 0;
+        margin: 10px 0 !important;
     }
 }
 
 @media (max-width: 576px) {
+    .hero {
+        align-items: center !important;
+        /* Better control for small screens */
+        padding-top: 150px !important;
+        /* Clear the 140px fixed header area */
+        padding-bottom: 60px !important;
+        min-height: 100vh;
+    }
+
     .hero-main-title {
-        font-size: 1.8rem;
-        /* Tuned: Readable on mobile */
-        line-height: 1.2;
+        font-size: 1.85rem;
+        /* Slightly larger for impact */
+        line-height: 1.35;
+        /* Increased for legibility */
+        margin-bottom: 30px;
+        /* More spacing before separator */
+    }
+
+    .section-title {
+        font-size: 1.5rem !important;
+        margin-bottom: 30px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .section-title::after {
+        margin-top: 8px !important;
+    }
+
+    .item-content h4 {
+        font-size: 1.2rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .hero-separator {
+        margin-bottom: 35px !important;
+        /* Increased for clarity */
     }
 
     .hero-description {
-        font-size: 0.9rem;
-        margin-bottom: 25px !important;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        /* Improved readability */
+        margin-bottom: 35px !important;
     }
 
     .hero-buttons .btn {
