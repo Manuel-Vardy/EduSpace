@@ -5212,7 +5212,7 @@ body {
         display: flex !important;
         flex-direction: column !important;
         gap: 15px !important;
-        align-items: flex-start !important;
+        align-items: center !important;
     }
 
     #heroCarousel .hero-buttons .btn {
@@ -5760,7 +5760,7 @@ body {
     #heroCarousel .carousel-item:nth-child(3) .animate-fade-up[style*="border"] {
         padding: 20px 12px !important;
         max-width: 92% !important;
-        margin-left: 0 !important;
+        margin: 0 auto !important;
         border-width: 3px !important;
     }
 
