@@ -143,36 +143,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
         countElements.forEach(el => countObserver.observe(el));
     }
+
+    // 6. Client Stats Counter Animation
+    const clientStatsNumber = document.querySelector('.client-stats-number[data-target]');
+
+    if (clientStatsNumber) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const targetValue = parseInt(target.getAttribute('data-target'));
+                    const duration = 2000; // 2 seconds
+                    let startTime = null;
+
+                    const animate = (timestamp) => {
+                        if (!startTime) startTime = timestamp;
+                        const progress = Math.min((timestamp - startTime) / duration, 1);
+                        
+                        // Easing function for smooth acceleration
+                        const easeOutQuad = progress * (2 - progress);
+                        const currentCount = Math.floor(easeOutQuad * targetValue);
+
+                        // Format with comma
+                        target.textContent = currentCount.toLocaleString() + '+';
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            target.textContent = targetValue.toLocaleString() + '+';
+                        }
+                    };
+
+                    requestAnimationFrame(animate);
+                    statsObserver.unobserve(target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        statsObserver.observe(clientStatsNumber);
+    }
 });
 
 
-// 3. Testimonials Auto-Scroll with Step-based Pause
-const tickerContainer = document.querySelector('.testimonials-ticker-container');
-if (tickerContainer) {
-    let scrollAmount = 0;
-    let isPaused = false;
-    const speed = 0.5; // Pixels per frame
-
-    function scrollTicker() {
-        if (!isPaused) {
-            tickerContainer.scrollLeft += speed;
-
-            // Infinite Loop Logic: If scrolled past half (duplicate set starts), reset
-            // Note: We assume the content is duplicated 50/50
-            if (tickerContainer.scrollLeft >= tickerContainer.scrollWidth / 2) {
-                tickerContainer.scrollLeft = 0;
-            }
+// Testimonial Carousel Pagination Sync
+const testimonialCarouselEl = document.getElementById('testimonialCarousel');
+if (testimonialCarouselEl) {
+    const currentSpan = document.getElementById('carousel-current');
+    testimonialCarouselEl.addEventListener('slide.bs.carousel', function (event) {
+        if (currentSpan) {
+            currentSpan.textContent = event.to + 1;
         }
-        requestAnimationFrame(scrollTicker);
-    }
-
-    // Start Scroll
-    scrollTicker();
-
-    // Pause on Interaction
-    tickerContainer.addEventListener('mouseenter', () => isPaused = true);
-    tickerContainer.addEventListener('mouseleave', () => isPaused = false);
-    tickerContainer.addEventListener('touchstart', () => isPaused = true, { passive: true });
-    tickerContainer.addEventListener('touchend', () => setTimeout(() => isPaused = false, 1000), { passive: true });
-    // Note: setTimeout on touchend gives user time to finish swipe before auto-scroll fights back
+    });
 }
