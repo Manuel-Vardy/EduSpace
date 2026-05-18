@@ -160,6 +160,64 @@
     color: var(--primary-red);
 }
 
+/* Process 3D Flip Card */
+.flip-card-container {
+    perspective: 1000px;
+    position: absolute;
+    top: 12%; 
+    bottom: 12%; 
+    left: 8%; 
+    right: 8%;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.flip-card-container:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.flip-card-front {
+    background-color: rgba(227, 30, 36, 0.85);
+    color: #ffffff;
+}
+
+.flip-card-back {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #000000;
+    transform: rotateY(180deg);
+}
+
+/* Image Hover Pop Effect */
+.hover-pop-img {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease-in-out;
+    position: relative;
+    z-index: 0;
+}
+.hover-pop-img:hover {
+    transform: scale(1.05);
+    z-index: 2;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
 /* Stats Ribbon Section */
 .stats-ribbon {
     background: #fff;
