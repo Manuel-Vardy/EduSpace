@@ -925,6 +925,12 @@ p {
     .hero-main-title span:first-child {
         display: block;
     }
+
+    /* Reduce boldness of first slide heading on laptop/desktop views */
+    #heroCarousel .carousel-item:first-child .hero-main-title {
+        font-weight: 600 !important;
+        font-size: 4.2rem !important;
+    }
 }
 
 .text-red {
@@ -5788,5 +5794,43 @@ body {
     .bento-tag {
         font-size: 0.6rem !important;
         padding: 4px 10px !important;
+    }
+}
+
+/* Custom Accordion overrides for Industries section */
+.custom-accordion .accordion-item {
+    background-color: transparent;
+}
+.custom-accordion .accordion-button {
+    background-color: #f1f1f1;
+    color: #333;
+    box-shadow: none !important;
+    padding: 1.25rem 1.5rem;
+    transition: all 0.3s ease;
+}
+.custom-accordion .accordion-button:not(.collapsed) {
+    background-color: var(--primary-red);
+    color: #ffffff;
+}
+.custom-accordion .accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+/* Custom Expanded Container */
+.container-expanded {
+    max-width: 1450px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mobile-specific height reduction for sub-page hero headers (Who We Are & Our Services) */
+@media (max-width: 767.98px) {
+    .page-hero-section {
+        min-height: 180px !important;
+        height: 180px !important;
+    }
+    .page-hero-section h1 {
+        font-size: 2.2rem !important;
+        margin-bottom: 0 !important;
     }
 }
