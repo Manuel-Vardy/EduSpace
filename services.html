@@ -817,13 +817,23 @@
 
                     accordionElements.forEach(collapseEl => {
                         collapseEl.addEventListener('show.bs.collapse', function (e) {
-                            // Find the button that controls this collapse to get the image source
-                            const button = document.querySelector(`[data-bs-target="#${e.target.id}"]`);
-                            if (button && button.dataset.industryImg) {
+                            // Find the image inside this collapse pane (used for mobile view)
+                            const mobileImg = collapseEl.querySelector('.accordion-body img');
+                            let imgSrc = mobileImg ? mobileImg.getAttribute('src') : null;
+
+                            // Fallback to data attribute if image is not found in the body
+                            if (!imgSrc) {
+                                const button = document.querySelector(`[data-bs-target="#${e.target.id}"]`);
+                                if (button) {
+                                    imgSrc = button.dataset.industryImg;
+                                }
+                            }
+
+                            if (imgSrc) {
                                 // Fade out image
                                 dynamicImg.style.opacity = '0.4';
                                 setTimeout(() => {
-                                    dynamicImg.src = button.dataset.industryImg;
+                                    dynamicImg.src = imgSrc;
                                     // Fade in image
                                     dynamicImg.style.opacity = '1';
                                 }, 300);
